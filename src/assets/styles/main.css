@@ -1,0 +1,20 @@
+/* Navi */
+.bg-myRed{
+  background-color: crimson;
+}
+
+.content{
+  padding: 12px;
+  margin-top: 60px;
+}
+
+/* Login */
+.hero-section{
+  background-image: url('../images/bromo.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.hero-container{
+  height: 100vh;
+}
