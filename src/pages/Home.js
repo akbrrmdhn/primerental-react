@@ -6,7 +6,7 @@ import merapi from "../assets/images/merapi.jpg";
 import telukbogam from "../assets/images/teluk-bogam.jpg";
 import bromo from "../assets/images/bromo.jpg";
 import malioboro from "../assets/images/malioboro.jpg";
-import edward from "../assets/images/edward.png"
+import edward from "../assets/images/edward.png";
 //import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
@@ -27,43 +27,47 @@ class Home extends React.Component {
               <div className="vehicle-finder">
                 <p>Vehicle Finder</p>
               </div>
-              <div className="row-finder">
-                <form>
-                  
-                </form>
-                <div className="column">
-                <select name="location" placeholder="Location">
-                    <option>Bali</option>
-                    <option>Yogyakarta</option>
-                    <option>Jakarta</option>
-                    <option>Kalimantan</option>
-                    <option>Malang</option>
-                  </select>
+              <div className="column-finder">
+                <div className="row-finder">
+                  <div className="column">
+                    <select name="location" placeholder="Location">
+                      <option>Bali</option>
+                      <option>Yogyakarta</option>
+                      <option>Jakarta</option>
+                      <option>Kalimantan</option>
+                      <option>Malang</option>
+                    </select>
+                  </div>
+                  <div className="column">
+                    <select name="type" placeholder="Type">
+                      <option>Bikes</option>
+                      <option>Cars</option>
+                      <option>Motorbikes</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="column">
-                <select name="type" placeholder="Type">
-                    <option>Bikes</option>
-                    <option>Cars</option>
-                    <option>Motorbikes</option>
-                  </select>
+                <div className="row-finder">
+                  <div className="column">
+                    <select name="payment" placeholder="Payment">
+                      <option>Succeed</option>
+                      <option>Finished</option>
+                      <option>Waiting</option>
+                      <option>Declined</option>
+                    </select>
+                  </div>
+                  <div className="column">
+                    <select name="date" placeholder="Date">
+                      <option></option>
+                      <option></option>
+                      <option></option>
+                      <option></option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div className="row-finder">
-                <div className="column">
-                <select name="payment" placeholder="Payment">
-                    <option>Succeed</option>
-                    <option>Finished</option>
-                    <option>Waiting</option>
-                    <option>Declined</option>
-                  </select>
-                </div>
-                <div className="column">
-                <select name="date" placeholder="Date">
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                  </select>
+                <div className="row-finder">
+                  <div className="submit-finder">
+                    <button>Submit</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -120,37 +124,42 @@ class Home extends React.Component {
           <h1 className="testimonials-heading">Testimonials</h1>
           <section className="testimonials">
             <Container>
-            <Row className="row row-testimonials">
-              <Col className="col-md stars-test">
-                <div className="stars">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
+              <Row className="row row-testimonials">
+                <Col className="col-md stars-test">
+                  <div className="stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </div>
+                  <div className="what-they-say">
+                    <p>
+                      ”It was the right decision to rent vehicle
+                      <br /> here, I spent less money and enjoy the
+                      <br /> trip. It was an amazing experience to
+                      <br /> have a ride for wildlife trip!”
+                    </p>
+                  </div>
+                  <div className="testi-name">
+                    <p>Edward Newgate</p>
+                    <p>Founder Circle</p>
+                  </div>
+                </Col>
+                <div className="col-md pic-test">
+                  <Card className="popular-card" style={{ width: "18rem" }}>
+                    <Card.Img
+                      className="popular-card-img"
+                      variant="top"
+                      src={edward}
+                    />
+                    <Card.Body className="card-body">
+                      <Card.Title></Card.Title>
+                      <Card.Text> </Card.Text>
+                    </Card.Body>
+                  </Card>
                 </div>
-                <div className="what-they-say">
-                  <p>”It was the right decision to rent vehicle<br /> here, I spent less money and enjoy the<br /> trip. It was an amazing experience to<br /> have a ride for wildlife trip!”</p>
-                </div>
-                <div className="testi-name">
-                  <p>Edward Newgate</p>
-                  <p>Founder Circle</p>
-                </div>
-              </Col>
-              <div className="col-md pic-test">
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={edward}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title></Card.Title>
-                  <Card.Text>  </Card.Text>
-                </Card.Body>
-              </Card>
-              </div>
-            </Row>
+              </Row>
             </Container>
           </section>
         </main>

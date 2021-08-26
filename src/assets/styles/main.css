@@ -135,6 +135,16 @@ section{
   padding-top: 10em;
 }
 
+input[type=name], select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 input[type=email], select {
   width: 80%;
   padding: 12px 20px;
@@ -196,7 +206,26 @@ input[type=password] {
   object-fit: cover;
 }
 
+.profile-data p{
+  margin-bottom: -1vh;
+}
 
+.profile-gender{
+  margin-top: 5em;
+}
+
+.contacts{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.identity{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 /* Vehicle Type */
 
 .popular-cards{

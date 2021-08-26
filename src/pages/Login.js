@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
 import { Button, Col, Row, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 //import Axios from "axios";
 class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
-  // email = this.state.email;
-  // submitLogin = () => {
-  //   const url = "localhost:8000/auth/login";
-  //   const data = {
-  //     email: email,
-  //     password: password,
-  //   };
-  //   Axios.post(url, data)
-  //   .then(result)
-  //   .catch()
+  // state  = {
+  //   email:"",
+  //   password: "",
   // }
   render() {
+    // const email = this.state.email;
+    // const password = this.state.password;
+    // const submitLogin = () => {
+    //   const form = new URLSearchParams();
+    //   form.append("email", email);
+    //   form.append("password", password);
+    //   const url = "localhost:8000/auth/login";
+    //   Axios.post(url, form)
+    //   .then((res) => {
+    //     localStorage.setItem("userToken", String(res.data.result.token));
+    //     this.props.history.push("/");
+    //   })
+    //   .catch()
+    // }
     return (
       <div className="login-page">
         <main>
@@ -38,11 +42,12 @@ class Login extends Component {
                     className="form-btn signup-btn"
                     size="lg"
                   >
+                    <Link to="/signup">
                     Sign Up
+                    </Link>
                   </Button>
                 </Col>
                 <div className="col-md login-form">
-                  <p>asdfd</p>
                   <form>
                     <input
                       type="email"
@@ -55,6 +60,9 @@ class Login extends Component {
                       placeholder="Password"
                     ></input>
                   </form>
+                  <Link to="/forgot_password">
+                  <p>Forgot Password?</p>
+                  </Link>
                   <Button
                     variant="primary"
                     className="form-btn login-btn"
@@ -66,6 +74,7 @@ class Login extends Component {
                     variant="primary"
                     className="form-btn login-google-btn"
                     size="lg"
+                    // onSubmit={this.submitLogin()}
                   >
                     Login with Google
                   </Button>

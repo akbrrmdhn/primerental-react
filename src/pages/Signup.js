@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 export default class Signup extends Component {
@@ -23,7 +24,9 @@ export default class Signup extends Component {
                     className="form-btn signup-btn"
                     size="lg"
                   >
+                    <Link to="/login">
                     Login
+                    </Link>
                   </Button>
                 </Col>
                 <div className="col-md login-form">

@@ -27,7 +27,8 @@ function Navi() {
           <Button variant="outline-warning" className="navbutton btn-login-nav">
             <Link to="/login">Login</Link>
           </Button>
-          <Button variant="warning"><Link to="/signup" className="navbutton btn-signup-nav">Register</Link></Button>
+          <Button variant="warning">
+            <Link to="/signup" className="navbutton btn-signup-nav">Register</Link></Button>
         </Navbar.Collapse>
       </Navbar>
     </header>
