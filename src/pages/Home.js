@@ -127,11 +127,11 @@ class Home extends React.Component {
               <Row className="row row-testimonials">
                 <Col className="col-md stars-test">
                   <div className="stars">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
+                    <span className="fa fa-star checked"></span>
                   </div>
                   <div className="what-they-say">
                     <p>

@@ -49,7 +49,13 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>asd</p>
+        <div className="social-links">
+              <span className="fab fa-twitter"></span>
+            <span className="fab fa-facebook-f"></span>
+            <span className="fab fa-instagram"></span>
+            <span className="fab fa-linkedin-in"></span>
+            <span className="fab fa-youtube"></span>
+            </div>
         </div>
       </div>
     </div>
