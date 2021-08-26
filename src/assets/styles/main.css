@@ -110,9 +110,20 @@ section{
   margin-right: 5em;
 }
 
-.row-testimonials{
-  display: flex;
-  
+.testimonials-heading{
+  padding-left: 2em;
+}
+
+.stars-test{
+  padding-top: 2em;
+}
+
+.what-they-say{
+  padding-top: 2em;
+}
+
+.checked{
+  color: orange;
 }
 
 /* Login */
@@ -124,28 +135,8 @@ section{
   padding-top: 10em;
 }
 
-.login-logo{
-  flex:2;
-}
-
-.hero-login{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-around;
-  text-align: -webkit-center;
-}
-
-.login-logo{
-  flex:2;
-  
-}
-.login-form{
-  flex:2;
-}
-
 input[type=email], select {
-  width: 60%;
+  width: 80%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -155,7 +146,7 @@ input[type=email], select {
 }
 
 input[type=password] {
-  width: 60%;
+  width: 80%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -165,8 +156,8 @@ input[type=password] {
 }
 
 .form-btn{
-  min-width: 60%;
-  width: 60%;
+  min-width: 80%;
+  width: 80%;
   height: 3em;
 }
 .login-btn{
@@ -182,11 +173,29 @@ input[type=password] {
   padding-top: 10em;
 }
 
-.hero-containter-password{
+.hero-container-password{
   display: flex;
   flex-direction: column;
   padding-top: 7em;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Profile */
+
+.profile-data{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.samantha-profile{
+  width: 10em;
+  height: 10em;
+  object-fit: cover;
+}
+
 
 /* Vehicle Type */
 

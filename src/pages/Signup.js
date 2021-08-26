@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import Footer from "../components/Footer";
 
 export default class Signup extends Component {
@@ -8,48 +8,59 @@ export default class Signup extends Component {
       <div className="signup">
         <main>
           <section className="hero-section-login">
-            <div className="hero-container">
-              <div className="hero-login">
-                <div className="login-logo">
-                  <h1>Let's Explore The World</h1>
+            <Container className="hero-container">
+              <Row className="hero-login">
+                <Col className="col-md login-logo">
+                  <div className="explore">
+                    <p>
+                      Let's Explore
+                      <br /> The World
+                    </p>
+                  </div>
                   <p>Already have an account?</p>
                   <Button
                     variant="primary"
-                    className="form-btn login-btn"
+                    className="form-btn signup-btn"
                     size="lg"
                   >
                     Login
                   </Button>
-                </div>
-                <div className="login-form">
-                  <p>asdfd</p>
+                </Col>
+                <div className="col-md login-form">
+                  <form>
                   <input
-                    type="email"
-                    className="login-form"
-                    placeholder="Email"
-                  ></input>
-                  <input
-                    type="password"
-                    className="login-form"
-                    placeholder="Password"
-                  ></input>
+                      type="name"
+                      className="login-form"
+                      placeholder="Name"
+                    ></input>
+                    <input
+                      type="email"
+                      className="login-form"
+                      placeholder="Email"
+                    ></input>
+                    <input
+                      type="password"
+                      className="login-form"
+                      placeholder="Password"
+                    ></input>
+                  </form>
                   <Button
                     variant="primary"
                     className="form-btn login-btn"
                     size="lg"
                   >
-                    Login
+                    Sign Up
                   </Button>
                   <Button
                     variant="primary"
                     className="form-btn login-google-btn"
                     size="lg"
                   >
-                    Login with Google
+                    Sign Up with Google
                   </Button>
                 </div>
-              </div>
-            </div>
+              </Row>
+            </Container>
           </section>
         </main>
         <Footer />

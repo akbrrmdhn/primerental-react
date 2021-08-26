@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row, Container } from "react-bootstrap";
 //import Axios from "axios";
 class Login extends Component {
-  // state = {
-  //   email: "",
-  //   password: "",
-  // }
+  state = {
+    email: "",
+    password: "",
+  };
   // email = this.state.email;
   // submitLogin = () => {
   //   const url = "localhost:8000/auth/login";
@@ -16,18 +16,21 @@ class Login extends Component {
   //   };
   //   Axios.post(url, data)
   //   .then(result)
-  //   .catch()    
+  //   .catch()
   // }
   render() {
     return (
       <div className="login-page">
         <main>
           <section className="hero-section-login">
-            <div className="hero-container">
-              <div className="hero-login">
-                <div className="col-md login-logo">
+            <Container className="hero-container">
+              <Row className="hero-login">
+                <Col className="col-md login-logo">
                   <div className="explore">
-                    <p>Let's Explore<br /> The World</p>
+                    <p>
+                      Let's Explore
+                      <br /> The World
+                    </p>
                   </div>
                   <p>Don't have an account?</p>
                   <Button
@@ -37,21 +40,20 @@ class Login extends Component {
                   >
                     Sign Up
                   </Button>
-                </div>
+                </Col>
                 <div className="col-md login-form">
                   <p>asdfd</p>
                   <form>
-                  <input
-                    type="email"
-                    className="login-form"
-                    placeholder="Email"
-                  ></input>
-                  <input
-                    type="password"
-                    className="login-form"
-                    placeholder="Password"
-                  ></input>
-                  
+                    <input
+                      type="email"
+                      className="login-form"
+                      placeholder="Email"
+                    ></input>
+                    <input
+                      type="password"
+                      className="login-form"
+                      placeholder="Password"
+                    ></input>
                   </form>
                   <Button
                     variant="primary"
@@ -68,8 +70,8 @@ class Login extends Component {
                     Login with Google
                   </Button>
                 </div>
-              </div>
-            </div>
+              </Row>
+            </Container>
           </section>
         </main>
         <Footer />

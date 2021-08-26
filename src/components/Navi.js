@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 
 function Navi() {
-  const isAuthenticated = false;
+  //const isAuthenticated = false;
   return (
     <header>
       <Navbar

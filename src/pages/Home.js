@@ -1,7 +1,7 @@
 import React from "react";
 import Navi from "../components/Navi";
 import Footer from "../components/Footer";
-import { Card } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import merapi from "../assets/images/merapi.jpg";
 import telukbogam from "../assets/images/teluk-bogam.jpg";
 import bromo from "../assets/images/bromo.jpg";
@@ -117,10 +117,11 @@ class Home extends React.Component {
               </Card>
             </div>
           </section>
-          <h1>Testimonials</h1>
+          <h1 className="testimonials-heading">Testimonials</h1>
           <section className="testimonials">
-            <div className="row row-testimonials">
-              <div className="col-md">
+            <Container>
+            <Row className="row row-testimonials">
+              <Col className="col-md stars-test">
                 <div className="stars">
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
@@ -128,8 +129,15 @@ class Home extends React.Component {
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                 </div>
-              </div>
-              <div className="col-md">
+                <div className="what-they-say">
+                  <p>”It was the right decision to rent vehicle<br /> here, I spent less money and enjoy the<br /> trip. It was an amazing experience to<br /> have a ride for wildlife trip!”</p>
+                </div>
+                <div className="testi-name">
+                  <p>Edward Newgate</p>
+                  <p>Founder Circle</p>
+                </div>
+              </Col>
+              <div className="col-md pic-test">
               <Card className="popular-card" style={{ width: "18rem" }}>
                 <Card.Img
                   className="popular-card-img"
@@ -142,7 +150,8 @@ class Home extends React.Component {
                 </Card.Body>
               </Card>
               </div>
-            </div>
+            </Row>
+            </Container>
           </section>
         </main>
         <Footer />

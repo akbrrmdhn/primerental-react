@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+//import { Button } from "react-bootstrap";
 import Footer from "../components/Footer";
 
 export default class Forgot_Password extends Component {
@@ -13,9 +13,17 @@ export default class Forgot_Password extends Component {
               
             </div>
             <div className="hero-container-password">
-              <div>a</div>
-              <div>asdasd</div>
-              <div>asdsadjlakdj</div>
+              <div>Don't Worry, We Got Your Back!</div>
+              <div>
+                <input>
+
+                </input>
+              </div>
+              <div>
+                <button>
+
+                </button>
+              </div>
             </div>
           </section>
         </main>

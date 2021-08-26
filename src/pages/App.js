@@ -15,9 +15,9 @@ import Payment from './Payment';
 function AppWithRouter() {
     
     
-    const isLogin = {
-        status: true,
-    }
+    // const isLogin = {
+    //     status: true,
+    // }
     return (
         <Router>
             <Route path="/" exact component={Home}/>
