@@ -1,54 +1,92 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
-import Navi from "../components/Navi";
-import { Image } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import samantha from "../assets/images/samantha.png";
+import Header from "../components/Header";
 
 export default class Profile extends Component {
   render() {
     return (
       <div className="profile-page">
-        <Navi />
+        <Header />
         <main>
-          <section className="profile">
-            <h2>Profile</h2>
-            <div className="profile-data">
-              <div className="profile-img">
-                <Image
-                  className="samantha-profile"
-                  src={samantha}
-                  roundedCircle
-                ></Image>
+          <Container>
+            <section className="profile-section">
+              <h2 className="profile-title">Profile</h2>
+              <div className="profile-data">
+                <div className="profile-img">
+                  <Image
+                    className="samantha-profile"
+                    src={samantha}
+                    roundedCircle
+                  ></Image>
+                </div>
+                <h2 className="user-name">Samantha Doe</h2>
+                <p className="user-data user-email">samanthadoe@mail.com</p>
+                <p className="user-data user-phone">+62833467823</p>
+                <p className="user-data user-active-since">Has been active since 2013</p>
+                <div className="profile-gender">
+                  <div className="gender-male">
+                    <input type="radio" value="MALE" className="gender male" />
+                    <label className="gender-label">Male</label>
+                  </div>
+                  <div className="gender-female">
+                    <input type="radio" value="FEMALE" className="gender female" />
+                    <label className="gender-label">Female</label>
+                  </div>
+                </div>
               </div>
-              <h2 className="user-name">Samantha Doe</h2>
-              <p className="user-email">samanthadoe@mail.com</p>
-              <p className="user-phone">+62833467823</p>
-              <p className="user-active-since">Has been active since 2013</p>
-              <div className="profile-gender">
-                <input type="radio" value="MALE" name="gender" /> Male
-                <input type="radio" value="FEMALE" name="gender" /> Female
-            </div>
-            </div>
-          </section>
-          <section className="contacts">
-              <label for="email">Email Address</label>
-              <input name="email" type="text" placeholder="Email address..."></input>
-              <label for="email">Address</label>
-              <input name="address" type="text" placeholder="Address..."></input>
-              <label for="mobile">Mobile Number</label>
-              <input name="mobile" type="text" placeholder="Mobile Number..."></input>
-          </section>
-          <section className="identity">
-              <label for="display-name">Display Name</label>
-              <input name="display-name" type="text" placeholder="Name..."></input>
-              <label for="dob">DD/MM/YYYY</label>
-              <input name="dob" type="text" placeholder="DD/MM/YY"></input>
-          </section>
-          <section className="submit-buttons">
-              <button>Save Changes</button>
-              <button>Edit Password</button>
-              <button>Cancel</button>
-          </section>
+            </section>
+            <section className="contacts">
+              <h4 className="profile-headings">Contacts</h4>
+              <label className="contacts-attribute" for="email">Email Address :</label>
+              <input
+                className="profile-email contacts-attribute"
+                type="text"
+                placeholder="Email address..."
+              ></input>
+              <label className="contacts-attribute" for="address">Address :</label>
+              <input
+                className="profile-address contacts-attribute"
+                type="text"
+                placeholder="Address..."
+              ></input>
+              <label className="contacts-attribute" for="mobile">Mobile Number :</label>
+              <input
+                className="profile-mobile contacts-attribute"
+                type="text"
+                placeholder="Mobile Number..."
+              ></input>
+            </section>
+            <section className="identity">
+              <h4 className="profile-headings">Identity</h4>
+              <Row className="identity-row">
+                <Col md={6}>
+                  <label for="display-name">Display Name</label>
+                  <input
+                    className="profile-display-name"
+                    type="text"
+                    placeholder="Name..."
+                  ></input>
+                </Col>
+                <Col md={6}>
+                  <label for="dob">Date of Birth</label>
+                  <input
+                    className="profile-dob"
+                    type="text"
+                    placeholder="DD/MM/YY"
+                  ></input>
+                </Col>
+              </Row>
+            </section>
+            <section className="submit-buttons">
+              <button className="btn profile-save">Save Changes</button>
+              <button className="btn profile-edit-password">
+                Edit Password
+              </button>
+              <button className="btn profile-cancel">Cancel</button>
+            </section>
+          </Container>
         </main>
         <Footer />
       </div>

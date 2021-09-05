@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 section{
   margin-bottom: 5em;
@@ -9,8 +10,8 @@ section{
 /* Navi */
 
 .navbar-class{
-  padding-top: 5%;
-  padding-bottom: 2%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 .logo-custom{
@@ -18,8 +19,8 @@ section{
 }
 
 .circle-outer {
-  height: 50px;
-  width: 50px;
+  height: 41px;
+  width: 41px;
   background-color: #393939;
   border-radius: 50%;
   display: flex;
@@ -28,26 +29,59 @@ section{
 }
 
 .circle-outer .circle-middle{
-  height: 30px;
-  width: 30px;
+  height: 18px;
+  width: 18px;
   background-color: white;
   border-radius: 50%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .circle-middle .circle-inner {
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
   background-color: #ffcd61;
   border-radius: 50%;
 }
 
+.nav-collapse{
+  padding-right: 5%;
+}
+
 .nav-links{
+  padding-left: 3em;
+  color: #393939;
+}
+
+.navbutton{
+  padding-left: 3em;
+}
+
+.navlink{
+  margin-left: 1em;
+}
+
+.nav-link-to{
+  text-decoration: none;
   color: #393939;
 }
 
 .navbutton{
   text-decoration: none;
+}
+
+.btn-chat-nav-icon{
+  margin-left: 10em;
+  width: 2em;
+  height: auto;
+}
+
+.btn-profile-nav-icon{
+  margin-right: 3em;
+  width: 3em;
+  height: 3em;
+  object-fit: cover;
 }
 /* Home */
 
@@ -69,6 +103,7 @@ section{
 
 .vehicle-finder{
   margin-top: 7%;
+  border-top: #F9F9FB;
 }
 
 .vehicle-finder p{
@@ -76,6 +111,13 @@ section{
   font-weight: 900;
   font-size: 22px;
   color: white;
+  
+}
+
+.vf-border{
+  width: 2em;
+  border-bottom: 2px solid white;
+  border-radius: 1%;
 }
 
 .row-finder{
@@ -84,24 +126,57 @@ section{
   justify-content: flex-start;
 }
 
+.finder-btn{
+  width: 13em;
+  height: 3em;
+  margin-right: 3em;
+  margin-top: 2em;
+  opacity: 0.4;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+
+.finder-date{
+  border-radius: 5px;
+  padding-left: 1.5em;
+  margin-top: 2em;
+}
+
+.btn-submit-finder{
+  background-color: #FFCD61;
+  margin-top: 3em;
+  width: 11em;
+  height: 3.25em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+}
+
 .popular-cards{
   display: flex;
   justify-content: space-evenly;
+  position: relative;
 }
 
-.popular-card{
+.vehicle-card{
   border-radius: 5%;
+  position: relative;
 }
 
-.popular-card-img{
+.vehicle-card-img{
     width: 100%;
-    height: 20em;
+    height: 25em;
     object-fit: cover;
 }
 
 .card-body{
-  text-align: end;
-  position: relative;
+  text-align: start;
+  position: absolute;
+  background-color: white;
+  width: 10em;
+  top: 19.75em;
+  border-radius: 5%;
+  right: 9em;
+  padding-left: 1.5em;
 }
 
 .testimonials{
@@ -193,11 +268,16 @@ input[type=password] {
 
 /* Profile */
 
+.profile-section{
+  margin-top: 3em;
+}
+
 .profile-data{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .samantha-profile{
@@ -206,46 +286,502 @@ input[type=password] {
   object-fit: cover;
 }
 
+.user-name{
+  margin-top: 1em;
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+}
+
 .profile-data p{
+  margin-top: 0.5em;
   margin-bottom: -1vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: #B8BECD;
 }
 
 .profile-gender{
   margin-top: 5em;
+  display: flex;
+  flex-direction: row;
+  align-items: inherit;
+  width: 50%;
+  justify-content: space-evenly;
 }
+
+.gender{
+  margin-right: 1em;
+}
+
+.gender-label{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+}
+
 
 .contacts{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
-.identity{
+
+.contacts-attribute{
+  margin-top: 2em;
+}
+
+.profile-title{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+
+.profile-headings{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+}
+
+.profile-email{
+  width: 100%;
+  height: 3em;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+.profile-address{
+  width: 100%;
+  height: 3em;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+.profile-mobile{
+  width: 100%;
+  height: 3em;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+.identity-row{
+  padding-top: 2em;
+}
+
+.profile-display-name{
+  width: 100%;
+  height: 3em;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+.profile-dob{
+  width: 100%;
+  height: 3em;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+.submit-buttons{
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 2em;
 }
+
+.profile-save{
+  background-color: #FFCD61;
+  color: #393939;
+  width: 15em;
+  height: 3em;
+  font-size: 24px;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+}
+
+.profile-edit-password{
+  background-color: #393939;
+  color: #FFCD61;
+  width: 15em;
+  height: 3em;
+  font-size: 24px;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+}
+
+.profile-cancel{
+  background-color: rgba(203, 203, 212, 0.27);
+  /* opacity: 0.2; */
+  color: #393939;
+  width: 15em;
+  height: 3em;
+  font-size: 24px;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+}
+
 /* Vehicle Type */
 
-.popular-cards{
+
+
+/* Reservation */
+
+.reservation-content{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.reserve-img{
+  width: 100%;
+  display: block;
+  margin-top: 1em;
+  border-radius: 10px;
+  object-fit: cover;
+  /* max-width: 60%; */
+}
+
+.vehicle-reserve-title{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+.vehicle-reserve-location{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.vehicle-reserve-status{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #9B0A0A;
+}
+
+
+.minus-button{
+  background-color: #efefef;
+  width: 2em;
+  height: 2em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+.plus-button{
+  background-color: #FFCD61;
+  width: 2em;
+  height: 2em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+.reservation-date-heading{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.vehicle-qty{
+  max-width: 50%;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+.add-vehicle-nominal{
   display: flex;
-  justify-content: space-evenly;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.popular-card{
-  border-radius: 5%;
+.reserve-date-input{
+  background-color:rgba(57, 57, 57, 0.2);
+  color: #80918E;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 5em;
+  margin-right: 3em;
+  margin-top: 2em;
+  padding-left: 1em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
 }
 
-.popular-card-img{
-    width: 100%;
-    height: 20em;
-    object-fit: cover;
+.rent-duration{
+  background-color:rgba(57, 57, 57, 0.2);
+  color: #80918E;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 5em;
+  margin-right: 3em;
+  margin-top: 2em;
+  padding-left: 1em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
 }
 
-.card-body{
-  text-align: end;
-  position: relative;
+.pay-now-button{
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 100%;
+  height: 4em;
+  background-color: #FFCD61;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+/* Payment */
+
+.payment-container{
+  padding-top: 2em;
+}
+
+.payment-img{
+  display: block;
+  width: 100%;
+  border-radius: 3%;
+}
+
+.payment-item-name{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+  margin-bottom: 0;
+}
+
+.payment-item-location{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  margin-top: -0.5em;
+}
+
+.payment-item-status{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #B8BECD;
+  margin-bottom: 0;
+}
+
+.payment-item-code{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #393939;
+  margin-bottom: 0;
+}
+
+.copy-booking-code{
+  background-color: #FFCD61;
+  color: #393939;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.payment-informations{
+  margin-top: 2em;
+}
+
+.payment-qty-box{
+  border: 2px solid #80918E;
+  width: 100%;
+  height: 7em;
+  border-radius: 10px;
+}
+
+.payment-qty{
+  margin: auto;
+  padding: 1.75em 2em 1.5em 2em;
+  text-align: start;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.payment-order-details-box{
+  border: 2px solid #80918E;
+  margin-top: 2em;
+  width: 100%;
+  height: 15em;
+  border-radius: 10px;
+}
+
+.payment-order-details-contents{
+  padding-left: 3em;
+  padding-top: 1.75em;
+}
+
+.payment-order-details{
+  text-align: start;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.payment-order-qty{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.payment-order-sum{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.payment-reservation-date-box{
+  border: 2px solid #80918E;
+  width: 100%;
+  height: 7em;
+  border-radius: 10px;
+}
+
+.payment-reservation-wrapper{
+  padding-left: 4em;
+  padding-top: 2em;
+}
+
+.reserve-date-title{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.reserve-date-content{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  padding-left: 15em;
+  margin-top: -2em;  
+}
+
+.payment-identity-box{
+  border: 2px solid #80918E;
+  margin-top: 2em;
+  width: 100%;
+  height: 15em;
+  border-radius: 10px;
+}
+
+.payment-identity-wrapper{
+  padding-left: 4em;
+  padding-top: 3em;
+}
+
+.payment-identity-title{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.payment-identity-contents{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.proceed-to-payment{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+.payment-code-title{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  padding-top: 0.5em;
+}
+
+.payment-serial-code-wrapper{
+  border: 2px solid #80918E;
+  width: 40%;
+  /* margin-left: -15em; */
+  border-radius: 10px;
+}
+
+.payment-serial-code{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #393939;
+  padding-left: 1em;
+  padding-top: 1em;
+  display: block;
+}
+
+.copy-payment-code{
+  background-color: #393939;
+  color: #FFCD61;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-left: 15em;
+  margin-top: -3.5em;
+}
+
+.payment-method{
+  width: 30%;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  border-radius: 10px;
+  border: 2px solid #80918E;
+}
+
+.finish-payment-button{
+  margin-top: 2em;
+  background-color: #FFCD61;
+  color: #393939;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 10px;
+}
+
+/* History */
+
+.history-input-forms{
+  justify-content: space-between;
+}
+
+.history-input-wrapper{
+  position: absolute;
+}
+
+.history-search-field{
+  width:fit-content;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  box-sizing: border-box;
+}
+
+.history-search-filter{
+  width: 25%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 /* Footer */

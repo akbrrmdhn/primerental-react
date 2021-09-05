@@ -1,19 +1,34 @@
 import React from "react";
-import Navi from "../components/Navi";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import merapi from "../assets/images/merapi.jpg";
-import telukbogam from "../assets/images/teluk-bogam.jpg";
-import bromo from "../assets/images/bromo.jpg";
-import malioboro from "../assets/images/malioboro.jpg";
 import edward from "../assets/images/edward.png";
 //import { Link } from 'react-router-dom';
+import Axios from "axios";
+import CardComponent from "../components/CardComponent";
 
 class Home extends React.Component {
+
+  state = {
+    score: [],
+  };
+  componentDidMount() {
+    Axios.get("http://localhost:8000/vehicles", {
+      params: { order_by: "v.score", sort: "DESC" },
+    })
+      .then(({ data }) => {
+        this.setState({ score: data.result });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   render() {
+    const data = this.state.score;
     return (
+      
       <div className="home-page">
-        <Navi />
+        <Header isAuthenticated={this.props.isAuthenticated} />
         <main>
           <section className="hero-section-home">
             <div className="hero-container">
@@ -27,98 +42,65 @@ class Home extends React.Component {
               <div className="vehicle-finder">
                 <p>Vehicle Finder</p>
               </div>
+              <div className="vf-border">
+              </div>
               <div className="column-finder">
                 <div className="row-finder">
                   <div className="column">
-                    <select name="location" placeholder="Location">
-                      <option>Bali</option>
-                      <option>Yogyakarta</option>
-                      <option>Jakarta</option>
-                      <option>Kalimantan</option>
-                      <option>Malang</option>
+                    <select className="finder-btn finder-location" defaultValue="Location">
+                      <option value="Location" disabled>Location</option>
+                      <option value="Bali">Bali</option>
+                      <option value="Yogyakarta">Yogyakarta</option>
+                      <option value="Jakarta">Jakarta</option>
+                      <option value="Kalimantan">Kalimantan</option>
+                      <option value="Malang">Malang</option>
                     </select>
                   </div>
                   <div className="column">
-                    <select name="type" placeholder="Type">
-                      <option>Bikes</option>
-                      <option>Cars</option>
-                      <option>Motorbikes</option>
+                    <select className="finder-btn finder-type" defaultValue="Type">
+                      <option value="Type" disabled>Type</option>
+                      <option value="Bikes">Bikes</option>
+                      <option value="Cars">Cars</option>
+                      <option value="Motorbikes">Motorbikes</option>
                     </select>
                   </div>
                 </div>
                 <div className="row-finder">
                   <div className="column">
-                    <select name="payment" placeholder="Payment">
-                      <option>Succeed</option>
-                      <option>Finished</option>
-                      <option>Waiting</option>
-                      <option>Declined</option>
+                    <select className="finder-btn finder-payment" defaultValue="Payment">
+                      <option value="Payment" disabled> Payment</option>
+                      <option value="Succeed">Succeed</option>
+                      <option value="Finished">Finished</option>
+                      <option value="Waiting">Waiting</option>
+                      <option value="Declined">Declined</option>
                     </select>
                   </div>
                   <div className="column">
-                    <select name="date" placeholder="Date">
-                      <option></option>
-                      <option></option>
-                      <option></option>
-                      <option></option>
-                    </select>
+                    <input className="finder-btn finder-date" type="date" placeholder="Date" />
                   </div>
                 </div>
                 <div className="row-finder">
                   <div className="submit-finder">
-                    <button>Submit</button>
+                    <button className="btn btn-submit-finder">Explore</button>
                   </div>
                 </div>
               </div>
             </div>
           </section>
           <section className="popular">
-            <div className="popular-heading"></div>
+            <h1 className="popular-heading">Popular in Town</h1>
             <div className="popular-cards">
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={merapi}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Merapi</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={telukbogam}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Teluk Bogam</Card.Title>
-                  <Card.Text>Kalimantan</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={bromo}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Bromo</Card.Title>
-                  <Card.Text>Malang</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={malioboro}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Malioboro</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
+            {data.map((data) => {
+                return (
+                  <CardComponent
+                    key={data.id}
+                    // link={`/detail/${data.id}`}
+                    picture={data.image}
+                    title={data.name}
+                    subtitle={data.location}
+                  />
+                );
+              })}
             </div>
           </section>
           <h1 className="testimonials-heading">Testimonials</h1>

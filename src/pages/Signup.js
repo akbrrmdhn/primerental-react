@@ -2,8 +2,34 @@ import React, { Component } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import Axios from 'axios';
+
 
 export default class Signup extends Component {
+  state = {
+    name:"",
+    email:"",
+    password:"",
+  }
+  submitSignup = () => {
+    const name = this.state.name;
+    const email = this.state.email;
+    const password = this.state.password;
+
+    const data = {
+      name, email, password,
+    }
+
+    const url = "http://localhost:8000/auth/register";
+    Axios.post(url, data)
+    .then((res) => {
+      // console.log(res.data);
+      this.props.history.push("/login");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
   render() {
     return (
       <div className="signup">
@@ -35,22 +61,26 @@ export default class Signup extends Component {
                       type="name"
                       className="login-form"
                       placeholder="Name"
+                      onChange={(e) => this.setState({name: e.target.value})}
                     ></input>
                     <input
                       type="email"
                       className="login-form"
                       placeholder="Email"
+                      onChange={(e) => this.setState({email: e.target.value})}
                     ></input>
                     <input
                       type="password"
                       className="login-form"
                       placeholder="Password"
+                      onChange={(e) => this.setState({password: e.target.value})}
                     ></input>
                   </form>
                   <Button
                     variant="primary"
                     className="form-btn login-btn"
                     size="lg"
+                    onClick={this.submitSignup}
                   >
                     Sign Up
                   </Button>

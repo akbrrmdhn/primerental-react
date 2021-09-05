@@ -2,27 +2,33 @@ import React, { Component } from "react";
 import Footer from "../components/Footer";
 import { Button, Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-//import Axios from "axios";
+import Axios from "axios";
 class Login extends Component {
-  // state  = {
-  //   email:"",
-  //   password: "",
-  // }
+  state = {
+    email: "",
+    password: "",
+  };
+  submitLogin = () => {
+    const email = this.state.email;
+    const password = this.state.password;
+
+    const data = {
+      email,
+      password,
+    };
+
+    const url = "http://localhost:8000/auth/login";
+    Axios.post(url, data)
+      .then((res) => {
+        // console.log(res.data)
+        localStorage.setItem("userToken", String(res.data.result.token));
+        this.props.history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   render() {
-    // const email = this.state.email;
-    // const password = this.state.password;
-    // const submitLogin = () => {
-    //   const form = new URLSearchParams();
-    //   form.append("email", email);
-    //   form.append("password", password);
-    //   const url = "localhost:8000/auth/login";
-    //   Axios.post(url, form)
-    //   .then((res) => {
-    //     localStorage.setItem("userToken", String(res.data.result.token));
-    //     this.props.history.push("/");
-    //   })
-    //   .catch()
-    // }
     return (
       <div className="login-page">
         <main>
@@ -42,9 +48,7 @@ class Login extends Component {
                     className="form-btn signup-btn"
                     size="lg"
                   >
-                    <Link to="/signup">
-                    Sign Up
-                    </Link>
+                    <Link to="/signup">Sign Up</Link>
                   </Button>
                 </Col>
                 <div className="col-md login-form">
@@ -53,20 +57,27 @@ class Login extends Component {
                       type="email"
                       className="login-form"
                       placeholder="Email"
+                      onChange={(e) => this.setState({
+                        email: e.target.value
+                      })}
                     ></input>
                     <input
                       type="password"
                       className="login-form"
                       placeholder="Password"
+                      onChange={(e) => this.setState({
+                        password: e.target.value
+                      })}
                     ></input>
                   </form>
-                  <Link to="/forgot_password">
-                  <p>Forgot Password?</p>
+                  <Link to="/forgotpassword">
+                    <p>Forgot Password?</p>
                   </Link>
                   <Button
                     variant="primary"
                     className="form-btn login-btn"
                     size="lg"
+                    onClick={this.submitLogin}
                   >
                     Login
                   </Button>
@@ -74,7 +85,7 @@ class Login extends Component {
                     variant="primary"
                     className="form-btn login-google-btn"
                     size="lg"
-                    // onSubmit={this.submitLogin()}
+                    
                   >
                     Login with Google
                   </Button>
