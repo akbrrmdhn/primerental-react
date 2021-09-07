@@ -2,23 +2,54 @@ import React, { Component } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import fixie from "../assets/images/fixie.jpg";
+import { Helmet } from "react-helmet";
+import Axios from "axios";
 
 export default class Payment extends Component {
+  state = {
+    image: "",
+    stock: 0,
+  };
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    const url = `http://localhost:8000/vehicles/${id}`;
+    Axios.get(url, {
+      params: { id: String(id) },
+    })
+      .then(({ data }) => {
+        const vehicleData = data.result[0];
+        console.log(vehicleData);
+        this.setState({
+          stock: vehicleData.stock,
+          id: vehicleData.id,
+          location: vehicleData.location,
+          name: vehicleData.name,
+          image: vehicleData.image,
+          price: vehicleData.price,
+          category: vehicleData.category,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   render() {
     return (
       <div className="payment-page">
-        <Header />
+        <Helmet>
+          <title>Prime Rental - Order Payment</title>
+        </Helmet>
+        <Header isAuthenticated={this.props.isAuthenticated} />
         <main>
           <section className="payment-section">
             <Container className="payment-container">
               <Row>
                 <Col xs={12} md={4}>
-                  <Image className="payment-img" src={fixie} />
+                  <Image className="payment-img" src={this.state.image} />
                 </Col>
                 <Col xs={12} md={8}>
-                  <p className="payment-item-name">Fixie - Gray Only</p>
-                  <p className="payment-item-location">Yogyakarta</p>
+                  <p className="payment-item-name">{this.state.name}</p>
+                  <p className="payment-item-location">{this.state.location}</p>
                   <p className="payment-item-status">No Prepayment</p>
                   <p className="payment-item-code">#FG1209878YZS</p>
                   <button className="btn copy-booking-code">
@@ -29,16 +60,16 @@ export default class Payment extends Component {
               <Row className="payment-informations">
                 <Col xs={12} md={4}>
                   <div className="payment-qty-box">
-                    <p className="payment-qty">Quantity: 2 Bikes</p>
+                    <p className="payment-qty">Quantity: {this.state.stock} {this.state.category}</p>
                   </div>
                   <div className="payment-order-details-box">
                     <div className="payment-order-details-contents">
                       <p className="payment-order-details">Order details:</p>
                       <p className="payment-order-qty">
-                        1 bike: Rp78.000
-                        <br />1 bike: Rp78.000
+                        {this.state.stock} {this.state.category}: Rp{this.state.price}
+                        <br />
                       </p>
-                      <p className="payment-order-sum">Total: Rp178.000</p>
+                      <p className="payment-order-sum">Total: Rp{this.state.price*this.state.stock}</p>
                     </div>
                   </div>
                 </Col>

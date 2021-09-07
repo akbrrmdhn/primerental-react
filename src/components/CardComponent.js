@@ -1,8 +1,11 @@
 // import { Link } from "react-router-dom"
 import { Card } from "react-bootstrap";
-function CardComponent({ picture, title, subtitle}) {
+import { Link } from "react-router-dom";
+function CardComponent({ link, picture, title, subtitle}) {
     return (
-        <Card className="vehicle-card" style={{ width: "18rem" }}>
+      <Link to={link ? link : "#"}>
+      
+      <Card className="vehicle-card" style={{ width: "18rem" }}>
                 <Card.Img
                   className="vehicle-card-img"
                   variant="top"
@@ -13,6 +16,7 @@ function CardComponent({ picture, title, subtitle}) {
                   <Card.Text>{subtitle}</Card.Text>
                 </Card.Body>
               </Card>
+      </Link>
     )
 }
 

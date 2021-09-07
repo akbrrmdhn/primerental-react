@@ -1,6 +1,8 @@
-export const loginAction = () => {
+import { signIn } from "./actionString";
+
+export const loginAction = (body, cb) => {
     return {
-        type: "ACTION_LOGIN"
+        type: signIn,
     };
 };
 

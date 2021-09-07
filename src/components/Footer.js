@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="main-footer">
@@ -31,7 +32,9 @@ function Footer() {
             </Col>
             {/** Column 3 */}
             <Col md={3}>
+              <Link to="/addVehicle">
               <h4>Vehicles</h4>
+              </Link>
               <ul className="list-unstyled">
                 <li>Bike</li>
                 <li>Cars</li>

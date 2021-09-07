@@ -1,30 +1,15 @@
-import { createStore } from 'redux';
-import { countUp, countDown } from './actionCreators/actionString';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createLogger } from 'redux-logger';
+import rpm from 'redux-promise-middleware';
+// import { countUp, countDown } from './actionCreators/actionString';
+import authReducer from './reducers/auth';
 
+const reducers = combineReducers({
+    auth: authReducer,
+})
+const logger = createLogger();
+const enhancers = applyMiddleware(rpm, logger);
 
-const defaultState = {
-    number: 0,
-    isLoggedIn: false,
-}
-
-const reducer = (prevState = defaultState, action) => {
-    //COUNT_UP COUNT_DOWN
-    switch (action.type){
-        case countUp:
-            return{
-                ...prevState,
-                number: prevState.number + 1,
-            };
-        case countDown:
-            return {
-                ...prevState,
-                number: prevState.number - 1,
-            };
-        default:
-            return prevState;
-    };
-};
-
-const reduxStore = createStore(reducer);
+const reduxStore = createStore(reducers, enhancers);
 
 export default reduxStore;

@@ -4,10 +4,11 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import email from "../assets/images/email.png";
 import samantha from "../assets/images/samantha.png";
+import { withRouter } from "react-router";
 
 function Header(props) {
   //const isAuthenticated = false;
-  const token = localStorage.getItem("userToken");
+  const loginStatus = props.isAuthenticated;
   return (
     <header>
       <Navbar
@@ -53,7 +54,7 @@ function Header(props) {
               roundedCircle
             />
           </Link> */}
-          {token ? (
+          {loginStatus ? (
             <Link to="/chat" className="navbutton btn-chat-nav">
               <Image className="btn-chat-nav-icon" src={email} />
             </Link>
@@ -64,7 +65,7 @@ function Header(props) {
               </Button>
             </Link>
           )}
-          {token ? (
+          {loginStatus ? (
             <Link to="/profile" className="navbutton btn-profile-nav">
               <Image
                 className="btn-profile-nav-icon"
@@ -83,4 +84,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default withRouter(Header);

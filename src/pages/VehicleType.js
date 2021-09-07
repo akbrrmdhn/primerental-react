@@ -8,11 +8,15 @@ import malioboro from "../assets/images/malioboro.jpg";
 import Header from "../components/Header";
 import CardComponent from "../components/CardComponent";
 import Axios from "axios";
+import { Helmet } from "react-helmet";
 
 export default class VehicleType extends Component {
   constructor(props){
     super(props);
     this.state ={
+      cars: [],
+      motorbikes: [],
+      bikes: [],
       score: [],
     }
   }
@@ -30,10 +34,13 @@ export default class VehicleType extends Component {
       });
   }
   render() {
-    const data = this.state.score;
+    const popularData = this.state.score;
     return (
       <div className="vehicletype">
-        <Header />
+        <Helmet>
+          <title>Prime Rental - Browse Vehicles</title>
+        </Helmet>
+        <Header isAuthenticated={this.props.isAuthenticated} />
         <main>
           <section className="search-box">
             <form>
@@ -48,14 +55,14 @@ export default class VehicleType extends Component {
           <section className="popular">
             <div className="popular-heading"></div>
             <div className="popular-cards">
-            {data.map((data) => {
+            {popularData.map((popularData) => {
                 return (
                   <CardComponent
-                    key={data.id}
-                    // link={`/detail/${data.id}`}
-                    picture={data.image}
-                    title={data.name}
-                    subtitle={data.location}
+                    key={popularData.id}
+                    link={`/vehicledetail/${popularData.id}`}
+                    picture={popularData.image}
+                    title={popularData.name}
+                    subtitle={popularData.location}
                   />
                 );
               })}

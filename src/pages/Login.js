@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
-import { Button, Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Axios from "axios";
+import { Helmet } from "react-helmet";
+import { postLogin } from "../utils/https/auth";
+// import { loginAction } from "../redux/actionCreators/auth";
+// import { connect } from "react-redux";
 class Login extends Component {
   state = {
     email: "",
@@ -17,8 +20,7 @@ class Login extends Component {
       password,
     };
 
-    const url = "http://localhost:8000/auth/login";
-    Axios.post(url, data)
+    postLogin(data)
       .then((res) => {
         // console.log(res.data)
         localStorage.setItem("userToken", String(res.data.result.token));
@@ -31,27 +33,37 @@ class Login extends Component {
   render() {
     return (
       <div className="login-page">
+        <Helmet>
+          <title>Prime Rental - Login</title>
+        </Helmet>
         <main>
           <section className="hero-section-login">
             <Container className="hero-container">
               <Row className="hero-login">
-                <Col className="col-md login-logo">
+                <Col md={5} className="login-logo">
                   <div className="explore">
                     <p>
                       Let's Explore
                       <br /> The World
                     </p>
                   </div>
-                  <p>Don't have an account?</p>
-                  <Button
-                    variant="primary"
+                  <p className="donot-have-acc">Don't have an account?</p>
+                  <Link to="/signup">
+                  <button
                     className="form-btn signup-btn"
                     size="lg"
                   >
-                    <Link to="/signup">Sign Up</Link>
-                  </Button>
+                    Sign Up
+                  </button>
+                  </Link>
+                  
                 </Col>
-                <div className="col-md login-form">
+                <Col md={2}>
+                  <div className="middle-border">
+
+                  </div>
+                </Col>
+                <Col md={5} className="login-form">
                   <form>
                     <input
                       type="email"
@@ -71,25 +83,22 @@ class Login extends Component {
                     ></input>
                   </form>
                   <Link to="/forgotpassword">
-                    <p>Forgot Password?</p>
+                    <p className="forgot-password-link">Forgot Password?</p>
                   </Link>
-                  <Button
-                    variant="primary"
+                  <button
                     className="form-btn login-btn"
                     size="lg"
                     onClick={this.submitLogin}
                   >
                     Login
-                  </Button>
-                  <Button
-                    variant="primary"
+                  </button>
+                  <button
                     className="form-btn login-google-btn"
                     size="lg"
-                    
                   >
                     Login with Google
-                  </Button>
-                </div>
+                  </button>
+                </Col>
               </Row>
             </Container>
           </section>
@@ -99,5 +108,18 @@ class Login extends Component {
     );
   }
 }
+
+// const mapStateToProps = ({ auth }) => {
+//   return {
+//     auth,
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onLogin: (body) => {
+//       dispatch(loginAction(body));
+//     }
+//   }
+// }
 
 export default Login;

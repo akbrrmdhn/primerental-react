@@ -6,6 +6,8 @@ import edward from "../assets/images/edward.png";
 //import { Link } from 'react-router-dom';
 import Axios from "axios";
 import CardComponent from "../components/CardComponent";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 class Home extends React.Component {
 
@@ -24,10 +26,13 @@ class Home extends React.Component {
       });
   }
   render() {
-    const data = this.state.score;
+    const vehicleData = this.state.score;
     return (
       
       <div className="home-page">
+        <Helmet>
+          <title>Prime Rental</title>
+        </Helmet>
         <Header isAuthenticated={this.props.isAuthenticated} />
         <main>
           <section className="hero-section-home">
@@ -88,13 +93,18 @@ class Home extends React.Component {
             </div>
           </section>
           <section className="popular">
-            <h1 className="popular-heading">Popular in Town</h1>
+            <div className="popular-title">
+            <p className="popular-heading">Popular in Town</p>
+            <Link to="/viewmore">
+            <p className="view-more-popular">View More {">"}</p>
+            </Link>
+            </div>
             <div className="popular-cards">
-            {data.map((data) => {
+            {vehicleData.map((data) => {
                 return (
                   <CardComponent
                     key={data.id}
-                    // link={`/detail/${data.id}`}
+                    link={`/vehicledetail/${data.id}`}
                     picture={data.image}
                     title={data.name}
                     subtitle={data.location}
@@ -103,7 +113,7 @@ class Home extends React.Component {
               })}
             </div>
           </section>
-          <h1 className="testimonials-heading">Testimonials</h1>
+          <p className="testimonials-heading">Testimonials</p>
           <section className="testimonials">
             <Container>
               <Row className="row row-testimonials">
@@ -116,7 +126,7 @@ class Home extends React.Component {
                     <span className="fa fa-star checked"></span>
                   </div>
                   <div className="what-they-say">
-                    <p>
+                    <p className="what-they-say-text">
                       ”It was the right decision to rent vehicle
                       <br /> here, I spent less money and enjoy the
                       <br /> trip. It was an amazing experience to
@@ -124,20 +134,22 @@ class Home extends React.Component {
                     </p>
                   </div>
                   <div className="testi-name">
-                    <p>Edward Newgate</p>
-                    <p>Founder Circle</p>
+                    <p className="say-name">Edward Newgate</p>
+                    <p className="say-origin">Founder Circle</p>
                   </div>
                 </Col>
                 <div className="col-md pic-test">
-                  <Card className="popular-card" style={{ width: "18rem" }}>
+                  <Card className="testimonial-card" style={{ width: "18rem" }}>
                     <Card.Img
-                      className="popular-card-img"
+                      className="testimonial-card-img"
                       variant="top"
                       src={edward}
                     />
-                    <Card.Body className="card-body">
-                      <Card.Title></Card.Title>
-                      <Card.Text> </Card.Text>
+                    <Card.Body className="testimonial-body">
+                      <div className="testimonial-buttons">
+                      <button className="btn">{"<"}</button>
+                      <button className="btn">{">"}</button>
+                      </div>
                     </Card.Body>
                   </Card>
                 </div>

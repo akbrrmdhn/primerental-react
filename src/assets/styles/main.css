@@ -151,6 +151,18 @@ section{
   font-weight: 900;
 }
 
+.popular-title{
+  display: flex;
+  justify-content: space-between;
+  margin: 5em;
+}
+
+.popular-heading{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+}
+
 .popular-cards{
   display: flex;
   justify-content: space-evenly;
@@ -179,6 +191,10 @@ section{
   padding-left: 1.5em;
 }
 
+.row-testimonials{
+  margin-bottom: 5em;
+}
+
 .testimonials{
   display: flex;
   margin-left: 5em;
@@ -187,6 +203,9 @@ section{
 
 .testimonials-heading{
   padding-left: 2em;
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
 }
 
 .stars-test{
@@ -195,6 +214,49 @@ section{
 
 .what-they-say{
   padding-top: 2em;
+}
+
+.what-they-say-text{
+  font-family: 'Mulish', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.say-name{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.say-origin{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.testimonial-card{
+  border-radius: 5%;
+  position: relative;
+}
+
+.testimonial-card-img{
+    width: 100%;
+    height: 25em;
+    object-fit: cover;
+}
+
+.testimonial-body{
+  position: absolute;
+  background-color: white;
+  width: 10em;
+  top: 21.5em;
+  border-radius: 16px;
+  right: -2em;
+  padding-left: 1.5em;
+}
+
+.testimonial-buttons{
+  display: flex;
 }
 
 .checked{
@@ -210,10 +272,24 @@ section{
   padding-top: 10em;
 }
 
+.middle-border{
+  width: 2em;
+  border-left: 2px solid white;
+  border-radius: 1%;
+}
+
+.donot-have-acc{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+}
+
 input[type=name], select {
-  width: 80%;
+  width: 100%;
+  height: 4em;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin-bottom: 2em;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -221,9 +297,11 @@ input[type=name], select {
 }
 
 input[type=email], select {
-  width: 80%;
+  width: 100%;
+  height: 4em;
   padding: 12px 20px;
-  margin: 8px 0;
+  /* margin: 8px 0; */
+  margin-bottom: 2em;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -231,22 +309,52 @@ input[type=email], select {
 }
 
 input[type=password] {
-  width: 80%;
+  width: 100%;
+  height: 4em;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin-bottom: 2em;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.form-btn{
-  min-width: 80%;
-  width: 80%;
-  height: 3em;
+.forgot-password-link{
+  color: white;
 }
+
+.form-btn{
+  min-width: 100%;
+  width: 100%;
+  height: 4em;
+  border-radius: 10px;
+}
+
+.signup-btn{
+  margin-bottom: 2em;
+  background-color: #393939;
+  color: #FFCD61;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+}
+
 .login-btn{
-  margin-bottom: 1%;
+  margin-bottom: 2em;
+  background-color: #FFCD61;
+  color: #393939;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.login-google-btn{
+  background-color: white;
+  color: black;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
 }
 
 /* Forgot Password */
@@ -264,6 +372,43 @@ input[type=password] {
   padding-top: 7em;
   justify-content: center;
   align-items: center;
+}
+
+.forgot-pass-heading{
+  margin-top: -3em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  padding-left: 5em;
+}
+
+.donot-worry-heading{
+  /* margin-top: -3em; */
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  color: white;
+}
+
+.resend-password-button{
+  width: 18.5em;
+  height: 3em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: #393939;
+  background-color: #FFCD61;
+}
+
+.resend-password-detail{
+  margin-top: 2em;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: white;
 }
 
 /* Profile */
@@ -761,6 +906,16 @@ input[type=password] {
 
 /* History */
 
+.history-content{
+  margin-top: 2em;
+  padding-bottom: 2em;
+}
+
+.history-today-notifications{
+  display: flex;
+  justify-content: space-between;
+}
+
 .history-input-forms{
   justify-content: space-between;
 }
@@ -770,7 +925,7 @@ input[type=password] {
 }
 
 .history-search-field{
-  width:fit-content;
+  width:100%;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 24px;
@@ -782,6 +937,206 @@ input[type=password] {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 24px;
+}
+
+.vehicle-history-img{
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.history-vehicle-name{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.history-vehicle-rent-date{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.history-vehicle-price{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.history-vehicle-status{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.history-check{
+  margin-top: 3.5em;
+}
+
+.new-arrival-wrapper{
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #393939;
+  border-radius: 10px;
+}
+
+.new-arrival-heading{
+  text-align: center;
+}
+
+.new-arrival-content{
+  margin: 5em;
+}
+
+.new-arrival-content > div {
+  display: inline-flex;
+  /* margin: 6px; */
+}
+
+/* Vehicle Detail */
+
+.navigate-detail{
+  display: flex;
+}
+
+.detail-content{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.det-img{
+  width: 100%;
+  display: block;
+  margin-top: 1em;
+  border-radius: 10px;
+  object-fit: cover;
+  /* max-width: 60%; */
+}
+
+.vehicle-detail-title{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+}
+
+.vehicle-detail-location{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.vehicle-detail-availability{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #087E0D;
+}
+
+.vehicle-detail-status{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #9B0A0A;
+}
+
+.vehicle-detail-specs{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.vehicle-detail-price{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  text-align: end;
+}
+
+.prev-image-button{
+  font-size: 48px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  margin-top: 1.5em;
+}
+
+.next-image-button{
+  font-size: 48px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  text-align: end;
+  margin-top: 1.5em;
+}
+
+.detail-add-nominal{
+  margin-top: 20em;
+}
+
+.detail-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 2em;
+}
+
+.chat-admin-button{
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 27em;
+  height: 4em;
+  color: #FFCD61;
+  background-color: #393939;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+.reserve-now-button{
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 25em;
+  height: 4em;
+  background-color: #FFCD61;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+.give-like-button{
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 14em;
+  height: 4em;
+  color: #FFCD61;
+  background-color: #393939;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+/* Add Vehicle */
+
+.add-vehicle-detail{
+  margin: 2em
+}
+
+.add-vehicle-img{
+  width: 100%;
+  display: block;
+  margin-top: 1em;
+  border-radius: 10px;
+  object-fit: cover;
+  /* max-width: 60%; */
+}
+
+.add-vehicle-img-etc{
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Footer */

@@ -3,12 +3,16 @@ import Footer from "../components/Footer";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import samantha from "../assets/images/samantha.png";
 import Header from "../components/Header";
+import { Helmet } from "react-helmet";
 
 export default class Profile extends Component {
   render() {
     return (
       <div className="profile-page">
-        <Header />
+        <Helmet>
+          <title>Prime Rental - Profile</title>
+        </Helmet>
+        <Header isAuthenticated={this.props.isAuthenticated} />
         <main>
           <Container>
             <section className="profile-section">
