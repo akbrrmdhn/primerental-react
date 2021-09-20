@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
-import { Card } from "react-bootstrap";
-import merapi from "../assets/images/merapi.jpg";
-import telukbogam from "../assets/images/teluk-bogam.jpg";
-import bromo from "../assets/images/bromo.jpg";
-import malioboro from "../assets/images/malioboro.jpg";
+import { Container } from "react-bootstrap";
 import Header from "../components/Header";
 import CardComponent from "../components/CardComponent";
 import Axios from "axios";
@@ -22,9 +18,9 @@ export default class VehicleType extends Component {
   }
   
   componentDidMount() {
-    const url = "http://localhost:8000/vehicles";
-    Axios.get(url, {
-      params: { order_by: "v.score", sort: "DESC" },
+    const scoreUrl = "http://localhost:8000/vehicles/score";
+    Axios.get(scoreUrl, {
+      params: { limit: 4 },
     })
       .then(({ data }) => {
         this.setState({ score: data.result });
@@ -32,6 +28,8 @@ export default class VehicleType extends Component {
       .catch((err) => {
         console.log(err);
       });
+    const allUrl = "http://localhost:8000/vehicles"
+    // Axios.get(typeUrl)
   }
   render() {
     const popularData = this.state.score;
@@ -43,176 +41,79 @@ export default class VehicleType extends Component {
         <Header isAuthenticated={this.props.isAuthenticated} />
         <main>
           <section className="search-box">
+            <Container>
             <form>
-              <input
+              <input className="search-vehicle-type"
                 type="text"
                 placeholder="Search vehicle (ex. cars, cars name)"
                 name="search"
               ></input>
-              <button type="submit"></button>
+              {/* <button type="submit"></button> */}
             </form>
+            </Container>
           </section>
           <section className="popular">
-            <div className="popular-heading"></div>
+            <div className="popular-heading">Popular in Town</div>
             <div className="popular-cards">
-            {popularData.map((popularData) => {
+            {popularData.map((data) => {
                 return (
                   <CardComponent
-                    key={popularData.id}
-                    link={`/vehicledetail/${popularData.id}`}
-                    picture={popularData.image}
-                    title={popularData.name}
-                    subtitle={popularData.location}
+                    key={data.id}
+                    link={`/vehicledetail/${data.id}`}
+                    picture={data.image}
+                    title={data.name}
+                    subtitle={data.location}
                   />
                 );
               })}
             </div>
           </section>
-          <section className="cars">
-            <div className="popular-heading"></div>
+          <section className="popular">
+            <div className="popular-heading">Cars</div>
             <div className="popular-cards">
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={merapi}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Merapi</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={telukbogam}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Teluk Bogam</Card.Title>
-                  <Card.Text>Kalimantan</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={bromo}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Bromo</Card.Title>
-                  <Card.Text>Malang</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={malioboro}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Malioboro</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
+            {popularData.map((data) => {
+                return (
+                  <CardComponent
+                    key={data.id}
+                    link={`/vehicledetail/${data.id}`}
+                    picture={data.image}
+                    title={data.name}
+                    subtitle={data.location}
+                  />
+                );
+              })}
             </div>
           </section>
-          <section className="motorbikes">
-            <div className="popular-heading"></div>
+          <section className="popular">
+            <div className="popular-heading">Motorbikes</div>
             <div className="popular-cards">
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={merapi}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Merapi</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={telukbogam}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Teluk Bogam</Card.Title>
-                  <Card.Text>Kalimantan</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={bromo}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Bromo</Card.Title>
-                  <Card.Text>Malang</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={malioboro}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Malioboro</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
+            {popularData.map((data) => {
+                return (
+                  <CardComponent
+                    key={data.id}
+                    link={`/vehicledetail/${data.id}`}
+                    picture={data.image}
+                    title={data.name}
+                    subtitle={data.location}
+                  />
+                );
+              })}
             </div>
           </section>
-          <section className="bikes">
-            <div className="popular-heading"></div>
+          <section className="popular">
+            <div className="popular-heading">Bikes</div>
             <div className="popular-cards">
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={merapi}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Merapi</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={telukbogam}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Teluk Bogam</Card.Title>
-                  <Card.Text>Kalimantan</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={bromo}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Bromo</Card.Title>
-                  <Card.Text>Malang</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card className="popular-card" style={{ width: "18rem" }}>
-                <Card.Img
-                  className="popular-card-img"
-                  variant="top"
-                  src={malioboro}
-                />
-                <Card.Body className="card-body">
-                  <Card.Title>Malioboro</Card.Title>
-                  <Card.Text>Yogyakarta</Card.Text>
-                </Card.Body>
-              </Card>
+            {popularData.map((data) => {
+                return (
+                  <CardComponent
+                    key={data.id}
+                    link={`/vehicledetail/${data.id}`}
+                    picture={data.image}
+                    title={data.name}
+                    subtitle={data.location}
+                  />
+                );
+              })}
             </div>
           </section>
         </main>

@@ -15,6 +15,7 @@ function CardComponent({ link, picture, title, subtitle}) {
                   <Card.Title>{title}</Card.Title>
                   <Card.Text>{subtitle}</Card.Text>
                 </Card.Body>
+                
               </Card>
       </Link>
     )

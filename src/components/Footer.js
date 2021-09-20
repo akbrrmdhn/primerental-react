@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="main-footer">
@@ -8,7 +9,9 @@ function Footer() {
         <Row>
           {/** Column 1 */}
           <Col md={3}>
-            <Logo />
+            <Link to="/" >
+              <Logo />
+            </Link>
             <p>
               Plan and book your perfect trip with
               <br /> expert advice, travel tips for vehicle

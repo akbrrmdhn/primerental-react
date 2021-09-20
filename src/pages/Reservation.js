@@ -5,11 +5,11 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Axios from "axios";
+import ButtonComponent from "../components/ButtonComponent";
 
 export default class Reservation extends Component {
   state = {
     image: "",
-    stock: 0,
   };
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -19,15 +19,14 @@ export default class Reservation extends Component {
     })
       .then(({ data }) => {
         const vehicleData = data.result[0];
-        console.log(vehicleData);
         this.setState({
-          stock: vehicleData.stock,
           id: vehicleData.id,
-          location: vehicleData.location,
           name: vehicleData.name,
+          category: vehicleData.category,
+          stock: vehicleData.stock,
+          location: vehicleData.location,
           image: vehicleData.image,
           price: vehicleData.price,
-          category: vehicleData.category,
         });
       })
       .catch((err) => {
@@ -52,11 +51,7 @@ export default class Reservation extends Component {
                 <p className="vehicle-reserve-title">{this.state.name}</p>
                 <p className="vehicle-reserve-location">{this.state.location}</p>
                 <p className="vehicle-reserve-status">No Prepayment</p>
-                <div className="row add-vehicle-nominal">
-                  <button className="btn minus-button">-</button>
-                  <p className="vehicle-qty">{this.state.stock}</p>
-                  <button className="btn plus-button">+</button>
-                </div>
+                <ButtonComponent />
                 <p className="reservation-date-heading">Reservation Date: </p>
                 <input type="date" className="reserve-date-input"></input>
                 <select className="rent-duration" placeholder="Day">

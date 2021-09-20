@@ -1,10 +1,19 @@
-import { signIn } from "./actionString";
+import { postLogin } from "../../utils/https/auth";
+import { signIn, signedIn } from "./actionString";
 
 export const loginAction = (body, cb) => {
     return {
         type: signIn,
+        payload: postLogin(body),
     };
 };
+
+export const loggedInAction = () => {
+    return {
+      type: signedIn,
+    };
+  };
+  
 
 export const registerAction = () => {
     return {

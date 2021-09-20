@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { postLogin } from "../utils/https/auth";
-// import { loginAction } from "../redux/actionCreators/auth";
-// import { connect } from "react-redux";
+// import { postLogin } from "../utils/https/auth";
+import google from "../assets/images/google.png"
+import { loginAction } from "../redux/actionCreators/auth";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 class Login extends Component {
   state = {
     email: "",
@@ -19,17 +21,22 @@ class Login extends Component {
       email,
       password,
     };
-
-    postLogin(data)
-      .then((res) => {
-        // console.log(res.data)
-        localStorage.setItem("userToken", String(res.data.result.token));
-        this.props.history.push("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.props.onLogin(data);
+    // postLogin(data)
+    //   .then((res) => {
+    //     // console.log(res.data)
+    //     localStorage.setItem("userToken", String(res.data.result.token));
+    //     this.props.history.push("/");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
+  componentDidUpdate(){
+    if(this.props.auth.isLogin){
+      this.props.history.push("/");
+    }
+  }
   render() {
     return (
       <div className="login-page">
@@ -96,7 +103,7 @@ class Login extends Component {
                     className="form-btn login-google-btn"
                     size="lg"
                   >
-                    Login with Google
+                   <Image src={google} style={{objectFit: "cover", width:"3vh"}} /> Login with Google
                   </button>
                 </Col>
               </Row>
@@ -109,17 +116,17 @@ class Login extends Component {
   }
 }
 
-// const mapStateToProps = ({ auth }) => {
-//   return {
-//     auth,
-//   };
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onLogin: (body) => {
-//       dispatch(loginAction(body));
-//     }
-//   }
-// }
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogin: (body) => {
+      dispatch(loginAction(body));
+    }
+  }
+}
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

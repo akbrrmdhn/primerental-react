@@ -4,11 +4,14 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import email from "../assets/images/email.png";
 import samantha from "../assets/images/samantha.png";
-import { withRouter } from "react-router";
+import { loggedInAction } from "../redux/actionCreators/auth";
+import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Header(props) {
+
   //const isAuthenticated = false;
-  const loginStatus = props.isAuthenticated;
+  const authState = useSelector(reduxState => reduxState.auth)
   return (
     <header>
       <Navbar
@@ -18,13 +21,15 @@ function Header(props) {
         expand="lg"
         collapseOnSelect
       >
-        <Logo />
+        <Link to="/" className="logo-header">
+          <Logo />
+        </Link>
 
         <Navbar.Toggle />
         <Navbar.Collapse className="nav-collapse">
           <Nav className="nav-links ms-auto">
             <Nav.Link className="navlink">
-              <Link to="/" className="nav-link-to" onClick={console.log(props.isAuthenticated)}>
+              <Link to="/" className="nav-link-to">
                 Home
               </Link>
             </Nav.Link>
@@ -54,7 +59,7 @@ function Header(props) {
               roundedCircle
             />
           </Link> */}
-          {loginStatus ? (
+          {authState.isLogin ? (
             <Link to="/chat" className="navbutton btn-chat-nav">
               <Image className="btn-chat-nav-icon" src={email} />
             </Link>
@@ -65,7 +70,7 @@ function Header(props) {
               </Button>
             </Link>
           )}
-          {loginStatus ? (
+          {authState.isLogin ? (
             <Link to="/profile" className="navbutton btn-profile-nav">
               <Image
                 className="btn-profile-nav-icon"
@@ -84,4 +89,18 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+const mapStateToProps = ({auth}) => {
+  return {
+    auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signedIn: () => {
+      dispatch(loggedInAction());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

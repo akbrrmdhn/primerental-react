@@ -13,54 +13,106 @@ import History from "./History";
 import ViewMore from "./ViewMore";
 import Payment from "./Payment";
 import VehicleDetail from "./VehicleDetail";
-
+import reduxStore from "../redux/store";
 import PrivateRoute from "../components/PrivateRoute";
 import PublicRoute from "../components/PublicRoute";
 import AddNewVehicle from "./AddNewVehicle";
+import { Provider } from "react-redux";
+import EditVehicle from "./EditVehicle";
 
 class AppWithRouter extends Component {
-    constructor(){
-      super();
-      this.state = {
-        token: "",
-        isAuthenticated: false,
-      }
+  constructor() {
+    super();
+    this.state = {
+      token: "",
+      isAuthenticated: false,
+    };
+  }
+  componentDidMount() {
+    const data = localStorage.getItem("userToken");
+    if (data) {
+      this.setState({ isAuthenticated: true });
     }
-    componentDidMount(){
-        const data = localStorage.getItem("userToken");
-        if(data){
-            this.setState({isAuthenticated: true});
-        }
-    }
-    render() {
+  }
+  render() {
     return (
       <div>
-        <Router>
-          <Route exact path="/" render={(props) => (<Home isAuthenticated={this.state.isAuthenticated} {...props} />)} />
-          {/* <PublicRoute exact path="/" restricted={false} component={Home} /> */}
-          <PublicRoute exact path="/login" restricted={true} component={Login} isAuthenticated={this.state.isAuthenticated} />
-          <PublicRoute exact path="/signup" restricted={true} component={Signup} isAuthenticated={this.state.isAuthenticated} />
-          <PublicRoute exact path="/forgotpassword" restricted={true} component={ForgotPassword} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/profile" component={Profile} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/chat" component={Chat} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/vehicletype" component={VehicleType} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/viewmore" component={ViewMore} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/reservation/:id" component={Reservation} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/history" component={History} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/payment/:id" component={Payment} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/vehicledetail/:id" component={VehicleDetail} isAuthenticated={this.state.isAuthenticated} />
-          <PrivateRoute exact path="/addVehicle" component={AddNewVehicle} isAuthenticated={this.state.isAuthenticated} />
-          {/* <Route exact path="/profile" component={Profile} />
-          <Route exact path="/chat" component={Chat} />
-          <Route exact path="/vehicletype" component={VehicleType} />
-          <Route exact path="/viewmore" component={ViewMore} />
-          <Route exact path="/reservation/:id" component={Reservation} />
-          <Route exact path="/history" component={History} />
-          <Route exact path="/payment/:id" component={Payment} />
-          <Route exact path="/vehicledetail/:id" render={(props) => <VehicleDetail {...props} />} /> */}
-        </Router>
+        <Provider store={reduxStore}>
+          <Router>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Home />
+              )}
+            />
+            {/* <PublicRoute exact path="/" restricted={false} component={Home} /> */}
+            <PublicRoute
+              path="/login"
+              restricted={true}
+              component={Login}
+              isAuthenticated={this.state.isAuthenticated}
+            />
+            <PublicRoute
+              path="/signup"
+              restricted={true}
+              component={Signup}
+              isAuthenticated={this.state.isAuthenticated}
+            />
+            <PublicRoute
+              path="/forgotpassword"
+              restricted={true}
+              component={ForgotPassword}
+              isAuthenticated={this.state.isAuthenticated}
+            />
+            <PrivateRoute path="/profile">
+              <Profile />
+            </PrivateRoute>
+          <PrivateRoute path="/chat">
+            <Chat />
+          </PrivateRoute>
+          <PrivateRoute path="/vehicletype">
+            <VehicleType />
+          </PrivateRoute>
+          <PrivateRoute path="/viewmore">
+            <ViewMore />
+          </PrivateRoute>
+          <PrivateRoute path="/reservation/:id" component={Reservation}/>
+          <PrivateRoute path="/history">
+            <History />
+          </PrivateRoute>
+          <PrivateRoute path="/payment/:id">
+            <Payment />
+          </PrivateRoute>
+          <PrivateRoute path="/vehicledetail/:id">
+            <VehicleDetail />
+          </PrivateRoute>
+          <PrivateRoute path="/addVehicle">
+            <AddNewVehicle />
+          </PrivateRoute>
+          <PrivateRoute path="/editvehicle/:id">
+            <EditVehicle />
+          </PrivateRoute>
+            {/* <Route path="/profile" component={Profile} />
+            <Route path="/chat" component={Chat} />
+            <Route path="/vehicletype" component={VehicleType} />
+            <Route path="/viewmore" component={ViewMore} />
+            <Route path="/reservation/:id" component={Reservation} />
+            <Route path="/history" component={History} />
+            <Route path="/payment/:id" component={Payment} />
+            <Route
+              path="/vehicledetail/:id"
+              render={(props) => <VehicleDetail {...props} />}
+            />
+            <Route
+              path="/addVehicle"
+              component={AddNewVehicle}
+              isAuthenticated={this.state.isAuthenticated}
+            /> */}
+            {/* <Route path="/editvehicle" component={EditVehicle} /> */}
+          </Router>
+        </Provider>
       </div>
-      
     );
   }
 }

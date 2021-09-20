@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 import { postRegister } from "../utils/https/auth";
+import google from "../assets/images/google.png";
 
 export default class Signup extends Component {
   state = {
@@ -94,7 +95,7 @@ export default class Signup extends Component {
                     className="form-btn login-google-btn"
                     size="lg"
                   >
-                    Sign Up with Google
+                   <Image src={google} style={{objectFit:"cover", width:"3vh"}} /> Sign Up with Google
                   </button>
                 </Col>
               </Row>

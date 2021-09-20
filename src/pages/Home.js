@@ -8,6 +8,8 @@ import Axios from "axios";
 import CardComponent from "../components/CardComponent";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { loggedInAction } from "../redux/actionCreators/auth";
+import { connect } from "react-redux";
 
 class Home extends React.Component {
 
@@ -15,8 +17,8 @@ class Home extends React.Component {
     score: [],
   };
   componentDidMount() {
-    Axios.get("http://localhost:8000/vehicles", {
-      params: { order_by: "v.score", sort: "DESC" },
+    Axios.get("http://localhost:8000/vehicles/score", {
+      params: { limit: 4 },
     })
       .then(({ data }) => {
         this.setState({ score: data.result });
@@ -26,6 +28,7 @@ class Home extends React.Component {
       });
   }
   render() {
+    const { auth } = this.props;
     const vehicleData = this.state.score;
     return (
       
@@ -112,6 +115,12 @@ class Home extends React.Component {
                 );
               })}
             </div>
+            <Container>
+
+            {auth.authInfo.roleLevel === 1 || auth.authInfo.roleLevel === 2 ? <Link to="/addVehicle">
+            <button className="btn home-add-button">Add New Item</button>
+            </Link> : ""}
+            </Container>
           </section>
           <p className="testimonials-heading">Testimonials</p>
           <section className="testimonials">
@@ -147,8 +156,16 @@ class Home extends React.Component {
                     />
                     <Card.Body className="testimonial-body">
                       <div className="testimonial-buttons">
-                      <button className="btn">{"<"}</button>
-                      <button className="btn">{">"}</button>
+                      <button className="btn">
+                        <div className="circle-prev">
+                        {"<"}
+                        </div>
+                      </button>
+                      <button className="btn">
+                        <div className="circle-next">
+                        {">"}
+                        </div>
+                      </button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -163,4 +180,18 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signedIn: () => {
+      dispatch(loggedInAction);
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

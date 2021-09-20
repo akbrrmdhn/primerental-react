@@ -6,13 +6,14 @@ import Header from "../components/Header";
 // import fixie from "../assets/images/fixie.jpg";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-
-export default class VehicleDetail extends Component {
+import { loggedInAction } from "../redux/actionCreators/auth";
+import { connect } from "react-redux";
+class VehicleDetail extends Component {
   state = {
     image: "",
-    stock: 0,
   };
   componentDidMount() {
+    console.log(this.props.match.params);
     const { id } = this.props.match.params;
     const url = `http://localhost:8000/vehicles/${id}`;
     Axios.get(url, {
@@ -20,15 +21,14 @@ export default class VehicleDetail extends Component {
     })
       .then(({ data }) => {
         const vehicleData = data.result[0];
-        console.log(vehicleData);
         this.setState({
-          stock: vehicleData.stock,
           id: vehicleData.id,
-          location: vehicleData.location,
           name: vehicleData.name,
+          category: vehicleData.category,
+          stock: vehicleData.stock,
+          location: vehicleData.location,
           image: vehicleData.image,
           price: vehicleData.price,
-          category: vehicleData.category,
         });
       })
       .catch((err) => {
@@ -86,7 +86,12 @@ export default class VehicleDetail extends Component {
           </section>
           <section className="detail-buttons">
             
-                  <Link to="/chat">
+                  {this.props.auth.authInfo.roleLevel === 1 || this.props.auth.authInfo.roleLevel === 2 
+                  ? (<div>
+                    <Link to="/"><button>Add to Home Page</button></Link>
+                    <Link to="/editvehicle"><button>Edit Item</button></Link>
+                  </div>) : (<div>
+                    <Link to="/chat">
                     <button className="btn chat-admin-button">
                       Chat Admin
                     </button>
@@ -103,6 +108,7 @@ export default class VehicleDetail extends Component {
                       Like
                     </button>
                   </Link>
+                    </div>)}
                 
           </section>
         </main>
@@ -111,3 +117,19 @@ export default class VehicleDetail extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signedIn: () => {
+      dispatch(loggedInAction);
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetail);

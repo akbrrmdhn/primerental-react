@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 section{
   margin-bottom: 5em;
 }
 
-/* Navi */
+/* #HEADER */
+
+.logo-header{
+  padding-left: 5%;
+}
 
 .navbar-class{
   padding-top: 3%;
   padding-bottom: 3%;
-}
-
-.logo-custom{
-  padding-left: 5%;
 }
 
 .circle-outer {
@@ -83,15 +83,19 @@ section{
   height: 3em;
   object-fit: cover;
 }
-/* Home */
+/* #HOME */
 
 .hero-section-home{
-  background-image: url('../images/home_bg.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) ), url('../images/home_bg.jpg');
   background-size: cover;
   background-position: center center;
   height: 100vh;
   padding-top: 5%;
   padding-left: 5%;
+}
+
+.hero-section-home::after{
+  background-color: rgba(203, 203, 212, 0.27);
 }
 
 .explore p{
@@ -191,6 +195,23 @@ section{
   padding-left: 1.5em;
 }
 
+.home-add-vehicle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-add-button{
+  background-color: #393939;
+  color: #FFCD61;
+  height: 7vh;
+  width: 100%;
+  margin-top: 5vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
 .row-testimonials{
   margin-bottom: 5em;
 }
@@ -240,18 +261,19 @@ section{
 }
 
 .testimonial-card-img{
-    width: 100%;
-    height: 25em;
-    object-fit: cover;
+  border-radius: 5%;
+  width: 30vh;
+  height: 45vh;
+  object-fit: cover;
 }
 
 .testimonial-body{
   position: absolute;
   background-color: white;
   width: 10em;
-  top: 21.5em;
+  top: 22.75em;
   border-radius: 16px;
-  right: -2em;
+  right: -1em;
   padding-left: 1.5em;
 }
 
@@ -259,13 +281,33 @@ section{
   display: flex;
 }
 
+.circle-prev{
+  height: 40px;
+  width: 40px;
+  border: 2px solid #393939;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-next{
+  height: 40px;
+  width: 40px;
+  border: 2px solid #393939;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .checked{
   color: orange;
 }
 
-/* Login */
+/* #LOGIN */
 .hero-section-login{
-  background-image: url('../images/bromo.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) ), url('../images/bromo.jpg');
   background-size: cover;
   background-position: center center;
   height: 100vh;
@@ -357,9 +399,9 @@ input[type=password] {
   font-size: 24px;
 }
 
-/* Forgot Password */
+/* #FORGOT-PASSWORD */
 .hero-section-password{
-  background-image: url('../images/forgot-password-bg.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) ), url('../images/forgot-password-bg.jpg');
   background-size: cover;
   background-position: center center;
   height: 100vh;
@@ -411,7 +453,7 @@ input[type=password] {
   color: white;
 }
 
-/* Profile */
+/* #PROFILE */
 
 .profile-section{
   margin-top: 3em;
@@ -462,7 +504,6 @@ input[type=password] {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
 }
-
 
 .contacts{
   display: flex;
@@ -570,11 +611,16 @@ input[type=password] {
   font-weight: 900;
 }
 
-/* Vehicle Type */
+/* #VEHICLE-TYPE */
 
+.search-vehicle-type{
+  margin-top: 2vh;
+  width: 100%;
+  height: 7vh;
+  border-radius: 10px;
+}
 
-
-/* Reservation */
+/* #RESERVATION */
 
 .reservation-content{
   padding-left: 5%;
@@ -690,7 +736,7 @@ input[type=password] {
   border-radius: 10px;
 }
 
-/* Payment */
+/* #PAYMENT */
 
 .payment-container{
   padding-top: 2em;
@@ -904,25 +950,71 @@ input[type=password] {
   border-radius: 10px;
 }
 
-/* History */
+/* #CHAT */
+
+.chat-utils{
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-chat{
+  width: 50vw;
+  height: 7vh;
+  border-radius: 10px;
+}
+
+.sort-chat{
+  width: 15vw;
+  height: 7vh;
+  border-radius: 10px;
+}
+
+.user-img-chat{
+  width: 7em;
+  height: 7em;
+  object-fit: cover;
+}
+
+.chat-user-name{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.chat-user-message{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.chat-user-date{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #9A9A9D;
+}
+
+.chat-listgroup-item{
+  margin-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+/* #HISTORY */
 
 .history-content{
   margin-top: 2em;
   padding-bottom: 2em;
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 
-.history-today-notifications{
+/* .history-today-notifications{
   display: flex;
   justify-content: space-between;
-}
+} */
 
-.history-input-forms{
-  justify-content: space-between;
-}
-
-.history-input-wrapper{
-  position: absolute;
-}
 
 .history-search-field{
   width:100%;
@@ -930,13 +1022,17 @@ input[type=password] {
   font-weight: 400;
   font-size: 24px;
   box-sizing: border-box;
+  height: 7vh;
+  border-radius: 10px;
 }
 
 .history-search-filter{
-  width: 25%;
+  width: 100%;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 24px;
+  height: 7vh;
+  border-radius: 10px;
 }
 
 .vehicle-history-img{
@@ -973,6 +1069,20 @@ input[type=password] {
   margin-top: 3.5em;
 }
 
+.heading-history{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #C4C4C4;
+  margin-top: 2vh;
+}
+
+.today-payment-history{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+}
+
 .new-arrival-wrapper{
   margin: auto;
   display: flex;
@@ -996,7 +1106,7 @@ input[type=password] {
   /* margin: 6px; */
 }
 
-/* Vehicle Detail */
+/* #VEHICLE-DETAIL */
 
 .navigate-detail{
   display: flex;
@@ -1119,7 +1229,7 @@ input[type=password] {
   border-radius: 10px;
 }
 
-/* Add Vehicle */
+/* #ADD-VEHICLE */
 
 .add-vehicle-detail{
   margin: 2em
@@ -1135,11 +1245,140 @@ input[type=password] {
 }
 
 .add-vehicle-img-etc{
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   display: flex;
   justify-content: space-between;
 }
 
-/* Footer */
+.pic-border{
+  border: 2px solid #393939;
+}
+
+.input-vehicle-name{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 7vh;
+  margin-bottom: 2vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.input-vehicle-location{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 7vh;
+  margin-bottom: 2vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.input-vehicle-description{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 7vh;
+  margin-bottom: 2vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.price-label{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.input-price{
+  height: 7vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 2vh;
+}
+
+.status-label{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.pick-status{
+  height: 7vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 2vh;
+}
+
+.stock-label{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.submit-add-vehicle-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 2em;
+}
+
+.add-item-to{
+  background-color: #393939;
+  width: 20vw;
+  height: 10vh;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #FFCD61;
+  border-radius: 10px;
+}
+
+.save-new-vehicle{
+  background-color: #FFCD61;
+  width: 25vw;
+  height: 10vh;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #393939;
+  border-radius: 10px;
+}
+
+/* #EDIT-VEHICLE*/
+
+.delete-vehicle{
+  background-color: #393939;
+  color: #FFCD61;
+  width: 15vw;
+  height: 10vh;
+  font-family: 'Nunito', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+/* #FOOTER */
+
+.main-footer{
+  font-family: 'Mulish', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  color: #848484;
+}
+
+.main-footer h4{
+  font-weight: 700;
+  color: #393939;
+}
+
 .container-footer{
   margin-top: -5em;
   background-color: #F9F9FB;
@@ -1154,3 +1393,7 @@ input[type=password] {
   justify-content: center;
 }
 
+.social-links{
+  display: flex;
+  justify-content: space-around;
+}

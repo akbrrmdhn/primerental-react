@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import rpm from 'redux-promise-middleware';
-// import { countUp, countDown } from './actionCreators/actionString';
 import authReducer from './reducers/auth';
+import countReducer from './reducers/count';
 
 const reducers = combineReducers({
+    count: countReducer,
     auth: authReducer,
 })
 const logger = createLogger();
