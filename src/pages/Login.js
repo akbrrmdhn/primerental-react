@@ -8,6 +8,7 @@ import google from "../assets/images/google.png"
 import { loginAction } from "../redux/actionCreators/auth";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { toast } from "react-toastify";
 class Login extends Component {
   state = {
     email: "",
@@ -21,16 +22,17 @@ class Login extends Component {
       email,
       password,
     };
+    if(this.state.email.length < 1) {
+      return toast.error('Email must not be empty!', {
+          position: toast.POSITION.TOP_CENTER,
+      })
+  }
+  if(this.state.password.length < 1) {
+      return toast.error('Password must not be empty!', {
+          position: toast.POSITION.TOP_CENTER,
+      })
+  }
     this.props.onLogin(data);
-    // postLogin(data)
-    //   .then((res) => {
-    //     // console.log(res.data)
-    //     localStorage.setItem("userToken", String(res.data.result.token));
-    //     this.props.history.push("/");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
   componentDidUpdate(){
     if(this.props.auth.isLogin){

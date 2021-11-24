@@ -3,20 +3,21 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 //import { Button } from "react-bootstrap";
 import Footer from "../components/Footer";
-import { forgotPassword } from "../utils/https/users";
+import { checkCode } from "../utils/https/users";
 import { withRouter } from "react-router";
 
-class Forgot_Password extends Component {
+
+class CodeInput extends Component {
   state = {
     email: '',
+    code: '',
   }
   codeClick = () => {
-    const email = this.state.email
-    const body = {email}
-    forgotPassword(body)
-    .then((result) => {this.props.history.push('/codeinput', { email })})
-    .catch((error) => console.log(error))
-  }
+    const email = this.props.location.state.email;
+    const code = this.state.code;
+    const body = {email, code}
+    checkCode(body).then((result) => this.props.history.push('/resetpassword', { email, code })).catch((error) => console.log(error))
+    }
   render() {
     return (
       <div className="forgot-password-page">
@@ -33,10 +34,10 @@ class Forgot_Password extends Component {
             </div>
             <div className="hero-container-password">
               <div>
-                <p className="donot-worry-heading">Don't Worry, We Got Your Back!</p>
+                <p className="donot-worry-heading">Input Your Code!</p>
               </div>
               <div>
-                <input type="email" className="forgot-password-form" placeholder="Enter your registered email..." onChange={(e) => this.setState({ email: e.target.value })} style={{width: "28em"}}>
+                <input type="text" className="forgot-password-form" placeholder="Enter your code..." onChange={(e) => this.setState({ code: e.target.value })} style={{width: "28em"}}>
 
                 </input>
               </div>
@@ -60,4 +61,4 @@ class Forgot_Password extends Component {
   }
 }
 
-export default withRouter(Forgot_Password);
+export default withRouter(CodeInput);
