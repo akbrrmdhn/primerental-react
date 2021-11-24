@@ -14,22 +14,24 @@ import { connect } from "react-redux";
 class Home extends React.Component {
 
   state = {
-    score: [],
+    popular: [],
   };
   componentDidMount() {
-    Axios.get("http://localhost:8000/vehicles/score", {
-      params: { limit: 4 },
+    const url = process.env.REACT_APP_BASE_URL;
+    Axios.get(`${url}/vehicles`, {
+      params: { limit: 4, order_by: 'v.score', sort: 'DESC' },
     })
       .then(({ data }) => {
-        this.setState({ score: data.result });
+        this.setState({ popular: data.result.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
   render() {
+    const url = process.env.REACT_APP_BASE_URL;
     const { auth } = this.props;
-    const vehicleData = this.state.score;
+    const vehicleData = this.state.popular;
     return (
       
       <div className="home-page">
@@ -73,7 +75,7 @@ class Home extends React.Component {
                     </select>
                   </div>
                 </div>
-                <div className="row-finder">
+                {/* <div className="row-finder">
                   <div className="column">
                     <select className="finder-btn finder-payment" defaultValue="Payment">
                       <option value="Payment" disabled> Payment</option>
@@ -86,7 +88,7 @@ class Home extends React.Component {
                   <div className="column">
                     <input className="finder-btn finder-date" type="date" placeholder="Date" />
                   </div>
-                </div>
+                </div> */}
                 <div className="row-finder">
                   <div className="submit-finder">
                     <button className="btn btn-submit-finder">Explore</button>
@@ -104,11 +106,12 @@ class Home extends React.Component {
             </div>
             <div className="popular-cards">
             {vehicleData.map((data) => {
+                console.log(data);
                 return (
                   <CardComponent
                     key={data.id}
                     link={`/vehicledetail/${data.id}`}
-                    picture={data.image}
+                    picture={`${url}${data.image}`}
                     title={data.name}
                     subtitle={data.location}
                   />

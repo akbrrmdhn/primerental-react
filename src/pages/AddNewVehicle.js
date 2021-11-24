@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Col, Row, Image, Container } from "react-bootstrap";
@@ -9,6 +9,24 @@ import { countUpAction, countDownAction } from "../redux/actionCreators/count";
 import { connect } from "react-redux";
 
 class AddNewVehicle extends Component {
+  state = {
+    upload: '',
+    name: '',
+    stock: '',
+    booking_status_id: '',
+    category_id: '',
+    location_id: '',
+    description: '',
+    price: '',
+    
+  }
+  constructor (props){
+    super(props);
+    this.fileRef = createRef();
+  }
+  triggerClick = () => {
+    this.setState({ upload: this.fileRef.current.click() })
+  }
   render() {
     const { count, countUp, countDown } = this.props;
     return (

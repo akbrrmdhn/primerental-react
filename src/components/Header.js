@@ -1,17 +1,22 @@
 import React from "react";
-import { Nav, Navbar, Button, Image } from "react-bootstrap";
+import { Nav, Navbar, Button, Image, NavDropdown } from "react-bootstrap";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import email from "../assets/images/email.png";
-import samantha from "../assets/images/samantha.png";
-import { loggedInAction } from "../redux/actionCreators/auth";
+import person_img from '../assets/images/person-icon.png';
+import { loggedInAction, logoutAction } from "../redux/actionCreators/auth";
 import { connect } from "react-redux";
 import { useSelector } from "react-redux";
-
-function Header(props) {
-
-  //const isAuthenticated = false;
+import { withRouter } from "react-router";
+const Header = props => {
+  const logoutHandler = () => {
+    const userToken = localStorage.getItem("token");
+    console.log("token: ", userToken);
+    props.signOut(userToken);
+    props.history.push("/login");
+  }
   const authState = useSelector(reduxState => reduxState.auth)
+  const url = process.env.REACT_APP_BASE_URL;
   return (
     <header>
       <Navbar
@@ -71,13 +76,27 @@ function Header(props) {
             </Link>
           )}
           {authState.isLogin ? (
-            <Link to="/profile" className="navbutton btn-profile-nav">
-              <Image
-                className="btn-profile-nav-icon"
-                src={samantha}
-                roundedCircle
-              />
-            </Link>
+            <NavDropdown className="btn-profile-nav-icon" title={
+              <div>
+                <Image className="btn-profile-nav-icon" src={`${authState.authInfo.image}` ? `${url}${authState.authInfo.image}` : person_img} roundedCircle />
+              </div>
+            }>
+              <NavDropdown.Item>
+                <Link to="/profile">
+                <button className="btn">Edit Profile</button>
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item>
+                <Link to="/">
+                  <button className="btn">Help</button>
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item>
+                <button className="btn" onClick={logoutHandler}>Logout</button>
+              </NavDropdown.Item>
+            </NavDropdown>
           ) : (
             <Link to="/signup" className="navbutton btn-signup-nav">
               <Button variant="warning">Register</Button>
@@ -99,8 +118,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     signedIn: () => {
       dispatch(loggedInAction());
-    }
+    },
+    signOut: (token) => {
+      dispatch(logoutAction(token));
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

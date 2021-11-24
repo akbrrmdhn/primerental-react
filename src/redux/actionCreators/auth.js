@@ -1,5 +1,6 @@
-import { postLogin } from "../../utils/https/auth";
-import { signIn, signedIn } from "./actionString";
+import { postLogin, postRegister, deleteLogout } from "../../utils/https/auth";
+import { postUpdateProfile } from "../../utils/https/users";
+import { signIn, signedIn, signOut, signUp, editUser } from "./actionString";
 
 export const loginAction = (body, cb) => {
     return {
@@ -15,14 +16,23 @@ export const loggedInAction = () => {
   };
   
 
-export const registerAction = () => {
+export const registerAction = (body, cb) => {
     return {
-        type: "ACTION_REGISTER"
+        type: signUp,
+        payload: postRegister(body),
     };
 };
 
-export const logoutAction = () => {
+export const logoutAction = token => {
     return {
-        type: "ACTION_LOGOUT"
+        type: signOut,
+        payload: deleteLogout(token),
     };
 };
+
+export const updateUserData = (body, token) => {
+    return {
+        type: editUser,
+        payload: postUpdateProfile(body, token),
+    }
+}

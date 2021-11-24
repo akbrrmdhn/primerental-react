@@ -115,10 +115,10 @@ class Payment extends Component {
               </Row>
               <Row>
                 {auth.authInfo.roleLevel === 2 ? <button className="btn finish-payment-button">
-                  Finish Payment
+                  Approve Payment
                 </button> :
                 <button className="btn finish-payment-button">
-                  Approve Payment
+                  Finish Payment
                 </button>}
               </Row>
             </Container>

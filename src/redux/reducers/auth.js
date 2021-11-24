@@ -1,4 +1,9 @@
-import { signIn, signedIn } from "../actionCreators/actionString";
+import {
+  signIn,
+  signedIn,
+  signOut,
+  editUser,
+} from "../actionCreators/actionString";
 import { ActionType } from "redux-promise-middleware";
 
 const localAuthInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -48,6 +53,52 @@ const authReducer = (prevState = initialState, action) => {
         ...prevState,
         authInfo: JSON.parse(localStorage.getItem("userInfo")),
         isLogin: true,
+      };
+    case signOut.concat("_", Pending):
+      return {
+        ...prevState,
+        isPending: true,
+        isFulfilled: false,
+        isRejected: false,
+      };
+    case signOut.concat("_", Rejected):
+      return {
+        ...prevState,
+        isPending: false,
+        isRejected: true,
+        error: action.payload,
+      };
+    case signOut.concat("_", Fulfilled):
+      localStorage.removeItem("token");
+      localStorage.removeItem("userInfo");
+      return {
+        ...prevState,
+        isPending: false,
+        isFulfilled: true,
+        authInfo: action.payload.data.result,
+        isLogin: false,
+      };
+    case editUser.concat("_", Pending):
+      return {
+        ...prevState,
+        isPending: true,
+        isFulfilled: false,
+        isRejected: false,
+      };
+    case editUser.concat("_", Rejected):
+      return {
+        ...prevState,
+        isPending: false,
+        isFulfilled: false,
+        isRejected: true,
+        error: action.payload,
+      };
+    case editUser.concat("_", Fulfilled):
+      return {
+        ...prevState,
+        isPending: false,
+        isFulfilled: true,
+        authInfo: action.payload.data.result,
       };
     default:
       return prevState;

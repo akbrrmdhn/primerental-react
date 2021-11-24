@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { loggedInAction } from "../redux/actionCreators/auth";
 import { connect } from "react-redux";
+const url = process.env.REACT_APP_BASE_URL;
+
 class VehicleDetail extends Component {
   state = {
     image: "",
@@ -15,11 +17,10 @@ class VehicleDetail extends Component {
   componentDidMount() {
     console.log(this.props.match.params);
     const { id } = this.props.match.params;
-    const url = `http://localhost:8000/vehicles/${id}`;
-    Axios.get(url, {
-      params: { id: String(id) },
-    })
+    
+    Axios.get(`${url}/vehicles/${id}`)
       .then(({ data }) => {
+        console.log("datanya ", data);
         const vehicleData = data.result[0];
         this.setState({
           id: vehicleData.id,
@@ -36,6 +37,7 @@ class VehicleDetail extends Component {
       });
   }
   render() {
+    const url = process.env.REACT_APP_BASE_URL;
     return (
       <div className="vehicle-detail">
         <Helmet>
@@ -47,16 +49,16 @@ class VehicleDetail extends Component {
           <section className="detail-content">
             <div className="row">
               <Col md={7} className="detail-img">
-                <Image className="det-img" src={this.state.image} />
+                <Image className="det-img" src={`${url}${this.state.image}`} />
                 <Row className="detail-image-etc">
                   <Col md={2}>
                     <p className="prev-image-button">{"<"}</p>
                   </Col>
                   <Col md={4}>
-                    <Image className="det-img" src={this.state.image} />
+                    <Image className="det-img" src={`${url}${this.state.image}`} />
                   </Col>
                   <Col md={4}>
-                    <Image className="det-img" src={this.state.image} />
+                    <Image className="det-img" src={`${url}${this.state.image}`} />
                   </Col>
                   <Col md={2}>
                     <p className="next-image-button">{">"}</p>
@@ -69,11 +71,7 @@ class VehicleDetail extends Component {
                 <p className="vehicle-detail-availability">Available</p>
                 <p className="vehicle-detail-status">No Prepayment</p>
                 <p className="vehicle-detail-specs">
-                  Capacity: 1 Person
-                  <br />
                   Type: {this.state.category}
-                  <br />
-                  Reservation before 2PM
                 </p>
                 <p className="vehicle-detail-price">Rp{this.state.price}/day</p>
                 <div className="row add-vehicle-nominal detail-add-nominal">
@@ -85,11 +83,10 @@ class VehicleDetail extends Component {
             </div>
           </section>
           <section className="detail-buttons">
-            
                   {this.props.auth.authInfo.roleLevel === 1 || this.props.auth.authInfo.roleLevel === 2 
                   ? (<div>
-                    <Link to="/"><button>Add to Home Page</button></Link>
-                    <Link to="/editvehicle"><button>Edit Item</button></Link>
+                    <Link to="/"><button className="btn add-to-home-detail">Add to Home Page</button></Link>
+                    <Link to="/editvehicle"><button className="btn edit-item-detail">Edit Item</button></Link>
                   </div>) : (<div>
                     <Link to="/chat">
                     <button className="btn chat-admin-button">

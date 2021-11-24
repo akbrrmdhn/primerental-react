@@ -8,3 +8,9 @@ export const postLogin = (body) => {
 export const postRegister = (body) => {
     return Axios.post(`${url}/auth/register`, body);
 }
+
+export const deleteLogout = token => {
+    return Axios.delete(`${url}/auth/logout`, {
+        headers: {'x-access-token': `Bearer ${token}`},
+    });
+};

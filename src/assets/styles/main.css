@@ -1180,11 +1180,8 @@ input[type=password] {
   margin-top: 1.5em;
 }
 
-.detail-add-nominal{
-  margin-top: 20em;
-}
-
 .detail-buttons{
+  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -1225,6 +1222,28 @@ input[type=password] {
   background-color: #393939;
   font-family: 'Nunito', sans-serif;
   font-weight: 900;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+.add-to-home-detail{
+  width: 20vw;
+  height: 7vh;
+  color: #FFCD61;
+  background-color: #393939;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  border-radius: 10px;
+}
+
+.edit-item-detail{
+  width: 20vw;
+  height: 7vh;
+  color: #393939;
+  background-color: #FFCD61;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
   font-size: 24px;
   border-radius: 10px;
 }

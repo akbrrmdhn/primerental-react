@@ -19,6 +19,10 @@ import PublicRoute from "../components/PublicRoute";
 import AddNewVehicle from "./AddNewVehicle";
 import { Provider } from "react-redux";
 import EditVehicle from "./EditVehicle";
+import CodeInput from "./CodeInput";
+import ResetPassword from "./ResetPassword";
+import ChangePassword from "./ChangePassword";
+import { ToastContainer } from "react-toastify";
 
 class AppWithRouter extends Component {
   constructor() {
@@ -39,13 +43,8 @@ class AppWithRouter extends Component {
       <div>
         <Provider store={reduxStore}>
           <Router>
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home />
-              )}
-            />
+            <ToastContainer />
+            <Route exact path="/" render={(props) => <Home />} />
             {/* <PublicRoute exact path="/" restricted={false} component={Home} /> */}
             <PublicRoute
               path="/login"
@@ -65,51 +64,49 @@ class AppWithRouter extends Component {
               component={ForgotPassword}
               isAuthenticated={this.state.isAuthenticated}
             />
+            <PublicRoute
+              path="/codeinput"
+              restricted={true}
+              component={CodeInput}
+              isAuthenticated={this.state.isAuthenticated}
+            />
+            <PublicRoute
+              path="/resetpassword"
+              restricted={true}
+              component={ResetPassword}
+              isAuthenticated={this.state.isAuthenticated}
+            />
             <PrivateRoute path="/profile">
               <Profile />
             </PrivateRoute>
-          <PrivateRoute path="/chat">
-            <Chat />
-          </PrivateRoute>
-          <PrivateRoute path="/vehicletype">
-            <VehicleType />
-          </PrivateRoute>
-          <PrivateRoute path="/viewmore">
-            <ViewMore />
-          </PrivateRoute>
-          <PrivateRoute path="/reservation/:id" component={Reservation}/>
-          <PrivateRoute path="/history">
-            <History />
-          </PrivateRoute>
-          <PrivateRoute path="/payment/:id">
-            <Payment />
-          </PrivateRoute>
-          <PrivateRoute path="/vehicledetail/:id">
-            <VehicleDetail />
-          </PrivateRoute>
-          <PrivateRoute path="/addVehicle">
-            <AddNewVehicle />
-          </PrivateRoute>
-          <PrivateRoute path="/editvehicle/:id">
-            <EditVehicle />
-          </PrivateRoute>
-            {/* <Route path="/profile" component={Profile} />
-            <Route path="/chat" component={Chat} />
-            <Route path="/vehicletype" component={VehicleType} />
-            <Route path="/viewmore" component={ViewMore} />
-            <Route path="/reservation/:id" component={Reservation} />
-            <Route path="/history" component={History} />
-            <Route path="/payment/:id" component={Payment} />
+            <PrivateRoute path="/chat">
+              <Chat />
+            </PrivateRoute>
+            <PrivateRoute path="/vehicletype">
+              <VehicleType />
+            </PrivateRoute>
+            <PrivateRoute path="/viewmore">
+              <ViewMore />
+            </PrivateRoute>
+            <PrivateRoute path="/changepassword">
+              <ChangePassword />
+            </PrivateRoute>
+            <PrivateRoute path="/reservation/:id" component={Reservation} />
+            <PrivateRoute path="/history">
+              <History />
+            </PrivateRoute>
+            <PrivateRoute path="/addVehicle">
+              <AddNewVehicle />
+            </PrivateRoute>
+            <PrivateRoute path="/editvehicle">
+              <EditVehicle />
+            </PrivateRoute>
+            {/* <Route path="/editvehicle" component={EditVehicle} /> */}
             <Route
               path="/vehicledetail/:id"
               render={(props) => <VehicleDetail {...props} />}
             />
-            <Route
-              path="/addVehicle"
-              component={AddNewVehicle}
-              isAuthenticated={this.state.isAuthenticated}
-            /> */}
-            {/* <Route path="/editvehicle" component={EditVehicle} /> */}
+            <Route path="/payment/:id" component={Payment} />
           </Router>
         </Provider>
       </div>

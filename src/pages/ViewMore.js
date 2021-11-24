@@ -3,17 +3,19 @@ import React, { Component } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import CardComponent from "../components/CardComponent";
+const url = process.env.REACT_APP_BASE_URL;
 
 export default class ViewMore extends Component {
   state = {
     vehicles: [],
   };
   componentDidMount() {
-    Axios.get("http://localhost:8000/vehicles", {
-      params: { order_by: "score", sort: "DESC" },
+
+    Axios.get(`${url}/vehicles`, {
+      params: { order_by: "score", sort: "DESC", limit: 12 },
     })
       .then(({ data }) => {
-        this.setState({ vehicles: data.result });
+        this.setState({ vehicles: data.result.data });
       })
       .catch((err) => {
         console.log(err);
@@ -29,13 +31,13 @@ export default class ViewMore extends Component {
             <p>Popular in Town</p>
           </section>
           <section className="viewmore-cards">
-            <div>
+            <div className="popular-cards">
               {vehicleData.map((data) => {
                 return (
                   <CardComponent
                     key={data.id}
                     link={`/vehicledetail/${data.id}`}
-                    picture={data.image}
+                    picture={`${url}${data.image}`}
                     title={data.name}
                     subtitle={data.location}
                   />

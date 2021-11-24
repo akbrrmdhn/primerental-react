@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Axios from "axios";
 import ButtonComponent from "../components/ButtonComponent";
-
-export default class Reservation extends Component {
+import { countUpAction, countDownAction } from "../redux/actionCreators/count";
+import { connect } from "react-redux";
+class Reservation extends Component {
   state = {
     image: "",
   };
   componentDidMount() {
+    
     const { id } = this.props.match.params;
     const url = `http://localhost:8000/vehicles/${id}`;
     Axios.get(url, {
@@ -24,6 +26,7 @@ export default class Reservation extends Component {
           name: vehicleData.name,
           category: vehicleData.category,
           stock: vehicleData.stock,
+          description: vehicleData.description,
           location: vehicleData.location,
           image: vehicleData.image,
           price: vehicleData.price,
@@ -34,6 +37,7 @@ export default class Reservation extends Component {
       });
   }
   render() {
+    const { count, countUp, countDown } = this.props;
     return (
       <div className="reservation-page">
         <Helmet>
@@ -49,9 +53,14 @@ export default class Reservation extends Component {
               </div>
               <div className="col-5">
                 <p className="vehicle-reserve-title">{this.state.name}</p>
+                <p>{this.state.description}</p>
                 <p className="vehicle-reserve-location">{this.state.location}</p>
                 <p className="vehicle-reserve-status">No Prepayment</p>
-                <ButtonComponent />
+                <ButtonComponent 
+                    decreaseNum={countDown}
+                    value={count.number}
+                    increaseNum={countUp}
+                    />
                 <p className="reservation-date-heading">Reservation Date: </p>
                 <input type="date" className="reserve-date-input"></input>
                 <select className="rent-duration" placeholder="Day">
@@ -75,3 +84,22 @@ export default class Reservation extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ count }) => {
+  return{
+    count,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    countUp: () => {
+      dispatch(countUpAction());
+    },
+    countDown: () => {
+      dispatch(countDownAction());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reservation);
