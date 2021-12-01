@@ -22,6 +22,7 @@ import EditVehicle from "./EditVehicle";
 import CodeInput from "./CodeInput";
 import ResetPassword from "./ResetPassword";
 import ChangePassword from "./ChangePassword";
+import Search from './Search';
 import { ToastContainer } from "react-toastify";
 
 class AppWithRouter extends Component {
@@ -101,12 +102,18 @@ class AppWithRouter extends Component {
             <PrivateRoute path="/editvehicle">
               <EditVehicle />
             </PrivateRoute>
+            <PrivateRoute path="/search">
+              <Search />
+            </PrivateRoute>
+            <PrivateRoute path="/payment">
+              <Payment />
+            </PrivateRoute>
             {/* <Route path="/editvehicle" component={EditVehicle} /> */}
             <Route
               path="/vehicledetail/:id"
               render={(props) => <VehicleDetail {...props} />}
             />
-            <Route path="/payment/:id" component={Payment} />
+            {/* <Route path="/payment/:id" component={Payment} /> */}
           </Router>
         </Provider>
       </div>

@@ -3,12 +3,36 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Col, Row, ListGroup, Image, Card } from "react-bootstrap";
 import { Helmet } from "react-helmet";
-import Fixie from "../assets/images/fixie.jpg";
 import merapi from "../assets/images/merapi.jpg";
 import telukbogam from "../assets/images/teluk-bogam.jpg";
+import axios from "axios";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+const url = process.env.REACT_APP_BASE_URL;
 
-export default class History extends Component {
+class History extends Component {
+  state = {
+    vehicles: [],
+  }
+  componentDidMount() {
+    const user_id = this.props.auth.authInfo.user_id;
+    const roleLevel = this.props.auth.authInfo.roleLevel;
+    if(roleLevel === 1){
+      axios.get(`${url}/histories`).then(({data}) => this.setState({vehicles: data.result.data})).catch((error) => console.log(error))
+    }
+    if(roleLevel === 2){
+      axios.get(`${url}/histories`, {
+        params: {owner_id: user_id}
+      }).then(({data}) => this.setState({vehicles: data.result.data})).catch((error) => console.log(error))
+    }
+    if(roleLevel === 3){
+      axios.get(`${url}/histories`, {
+        params: {user_id: user_id}
+      }).then(({data}) => this.setState({vehicles: data.result.data})).catch((error) => console.log(error))
+    }
+  }
   render() {
+    const vehicleData = this.state.vehicles;
     return (
       <div className="history-page">
         <Helmet>
@@ -65,7 +89,7 @@ export default class History extends Component {
                     </select>
                   </Col>
                 </Row>
-                <div className="history-notifications">
+                {/* <div className="history-notifications">
                   <p className="heading-history">Today</p>
                   <ListGroup variant="flush">
                     <ListGroup.Item className="history-today-notifications">
@@ -107,28 +131,34 @@ export default class History extends Component {
                       </Row>
                     </ListGroup.Item>
                   </ListGroup>
-                </div>
+                </div> */}
                 <Row className="vehicle-histories">
-                  <p className="heading-history">A Week Ago</p>
+                  {/* <p className="heading-history">A Week Ago</p> */}
+                  {vehicleData.map((data) => {
+                  return (
                   <ListGroup variant="flush">
                     <ListGroup.Item className="vehicle-history-details">
                       <Row>
                         <Col md={4}>
                           <Image
                             className="vehicle-history-img"
-                            src={Fixie}
+                            src={`${url}${data.image}`}
+                            onClick={() => this.props.history.push('/payment', {history_id: data.transaction_id})}
                           ></Image>
                         </Col>
                         <Col md={7}>
-                          <p className="history-vehicle-name">Fixie</p>
+                          <p className="history-vehicle-name">{data.vehicle_name}</p>
                           <p className="history-vehicle-rent-date">
-                            Jan 18 to 21 2021
+                            Start: {new Date(data.rent_date).toLocaleDateString("en-CA")}
+                          </p>
+                          <p className="history-vehicle-rent-date">
+                            End: {new Date(data.return_date).toLocaleDateString("en-CA")}
                           </p>
                           <p className="history-vehicle-price">
-                            Prepayment: Rp245.000
+                            Prepayment: Rp{data.total_price}
                           </p>
                           <p className="history-vehicle-status">
-                            Has been Returned
+                            {data.payment_status}
                           </p>
                         </Col>
                         <Col md={1}>
@@ -142,6 +172,8 @@ export default class History extends Component {
                       </Row>
                     </ListGroup.Item>
                   </ListGroup>
+                    )
+                  })}
                 </Row>
               </Col>
               <Col md={1}></Col>
@@ -186,3 +218,11 @@ export default class History extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  }
+}
+const HOC1 = withRouter(History)
+export default connect(mapStateToProps)(HOC1);

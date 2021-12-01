@@ -10,11 +10,14 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { loggedInAction } from "../redux/actionCreators/auth";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 class Home extends React.Component {
 
   state = {
     popular: [],
+    location_id: '',
+    category_id: '',
   };
   componentDidMount() {
     const url = process.env.REACT_APP_BASE_URL;
@@ -27,6 +30,16 @@ class Home extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+  searchHandler = () => {
+    let searchQuery = '/search?';
+    if (this.state.location_id) {
+      searchQuery += `location_id=${this.state.location_id}&`;
+    }
+    if (this.state.category_id) {
+      searchQuery += `category_id=${this.state.category_id}&`;
+    }
+    this.props.history.push(`${searchQuery.slice(0, -1)}`);
   }
   render() {
     const url = process.env.REACT_APP_BASE_URL;
@@ -57,21 +70,20 @@ class Home extends React.Component {
               <div className="column-finder">
                 <div className="row-finder">
                   <div className="column">
-                    <select className="finder-btn finder-location" defaultValue="Location">
+                    <select className="finder-btn finder-location" defaultValue="Location" onChange={(e) => this.setState({ location_id: e.target.value})}>
                       <option value="Location" disabled>Location</option>
-                      <option value="Bali">Bali</option>
-                      <option value="Yogyakarta">Yogyakarta</option>
-                      <option value="Jakarta">Jakarta</option>
-                      <option value="Kalimantan">Kalimantan</option>
-                      <option value="Malang">Malang</option>
+                      <option value="1">Jakarta</option>
+                      <option value="2">Yogyakarta</option>
+                      <option value="3">Malang</option>
+                      <option value="4">Banjarmasin</option>
                     </select>
                   </div>
                   <div className="column">
-                    <select className="finder-btn finder-type" defaultValue="Type">
+                    <select className="finder-btn finder-type" defaultValue="Type" onChange={(e) => this.setState({ category_id: e.target.value})}>
                       <option value="Type" disabled>Type</option>
-                      <option value="Bikes">Bikes</option>
-                      <option value="Cars">Cars</option>
-                      <option value="Motorbikes">Motorbikes</option>
+                      <option value="1">Cars</option>
+                      <option value="2">Motorbikes</option>
+                      <option value="3">Bikes</option>
                     </select>
                   </div>
                 </div>
@@ -91,7 +103,7 @@ class Home extends React.Component {
                 </div> */}
                 <div className="row-finder">
                   <div className="submit-finder">
-                    <button className="btn btn-submit-finder">Explore</button>
+                    <button className="btn btn-submit-finder" onClick={this.searchHandler}>Explore</button>
                   </div>
                 </div>
               </div>
@@ -196,5 +208,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+const HOC1 = withRouter(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(HOC1);

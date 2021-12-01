@@ -15,7 +15,7 @@ const url = process.env.REACT_APP_BASE_URL;
 class Profile extends Component {
   state = {
     name: '',
-    dob: new Date(this.props.auth.authInfo.dob),
+    dob: new Date(this.props.auth.authInfo.dob).toLocaleDateString("en-CA"),
     gender: '',
     phone: '',
     address: '',
@@ -39,7 +39,7 @@ class Profile extends Component {
       this.setState({email: userData.email})
       this.setState({image: userData.image})
       this.setState({gender_id: userData.gender_id});
-      this.setState({dob: new Date(userData.dob).toISOString()})
+      this.setState({dob: new Date(userData.dob).toISOString().substr(0, 19).replace('T', ' ')})
       this.setState({image: url + userData.image})
     })
     .catch((error) => {
@@ -60,9 +60,9 @@ class Profile extends Component {
     queries.append('address', this.state.address);
     queries.append('email', this.state.email);
     queries.append('gender_id', this.state.gender_id);
+    queries.append("date_of_birth", this.state.dob);
     this.state.upload !== '' && queries.append('image', this.state.upload);
-    // queries.append("dob", `${this.state.dob.getFullYear()}-${this.state.dob.getMonth() + 1}-${this.state.dob.getDate()}`);
-    // console.log(queries.get("dob"));
+    console.log(queries.get("date_of_birth"));
     
     sweetAlert.fire({
       title: "Do you want to save these new changes?",
