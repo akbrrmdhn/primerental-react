@@ -7,12 +7,13 @@ import { Helmet } from "react-helmet";
 import ButtonComponent from "../components/ButtonComponent";
 import { countUpAction, countDownAction } from "../redux/actionCreators/count";
 import { connect } from "react-redux";
+// import { addNewVehicle } from "../utils/https/vehicles";
 
 class AddNewVehicle extends Component {
   state = {
     upload: '',
     name: '',
-    stock: '',
+    stock: 0,
     booking_status_id: '',
     category_id: '',
     location_id: '',
@@ -27,8 +28,19 @@ class AddNewVehicle extends Component {
   triggerClick = () => {
     this.setState({ upload: this.fileRef.current.click() })
   }
+  submitVehicle = () => {
+    // const token = localStorage.getItem('token');
+    const queries = new FormData();
+    queries.append('name', this.state.name);
+    queries.append('description', this.state.description);
+    queries.append('price', this.state.price);
+    queries.append('category_id', this.state.category_id);
+    queries.append('location_id', this.state.location_id);
+    queries.append('stock', this.state.stock);
+    queries.append('booking_status_id', this.state.booking_status_id);
+  }
   render() {
-    const { count, countUp, countDown } = this.props;
+    const { countUp, countDown } = this.props;
     return (
       <div className="add-vehicle-page">
         <Helmet>
@@ -67,6 +79,7 @@ class AddNewVehicle extends Component {
                     type="text"
                     className="input-vehicle-name"
                     placeholder="Name (max. 20 words)"
+                    onChange={(e) => this.setState({name: e.target.value})}
                   />
                   </Row>
                   <Row>
@@ -74,6 +87,7 @@ class AddNewVehicle extends Component {
                     type="text"
                     className="input-vehicle-location"
                     placeholder="Location"
+                    
                   />
                   </Row>
                   <Row>
@@ -81,11 +95,12 @@ class AddNewVehicle extends Component {
                     type="text"
                     className="input-vehicle-description"
                     placeholder="Description (max. 150 words)"
+                    onChange={(e) => this.setState({description: e.target.value})}
                   />
                   </Row>
                   <Row>
                   <label className="price-label">Price:</label>
-                  <input type="number" min="0" className="input-price" placeholder="Type price..." />
+                  <input type="number" min="0" className="input-price" placeholder="Type price..." onChange={(e) => this.setState({price: e.target.value})} />
                   </Row>
                   <Row>
                   <label className="status-label">Status:</label>
@@ -99,7 +114,7 @@ class AddNewVehicle extends Component {
                     <label className="stock-label">Stock:</label>
                     <ButtonComponent 
                     decreaseNum={countDown}
-                    value={count.number}
+                    value={this.state.stock}
                     increaseNum={countUp}
                     />
                   </Row>

@@ -2,6 +2,10 @@ import Axios from "axios";
 
 const url = process.env.REACT_APP_BASE_URL
 
+export const getVehicleByID = (id) => {
+  return Axios.get(`${url}/vehicles/${id}`)
+}
+
 export const addNewVehicle = (body, token) => {
   return Axios.post(`${url}/vehicles/`, body, {
     headers: {'x-access-token': `Bearer ${token}`}

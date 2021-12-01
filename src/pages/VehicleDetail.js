@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { loggedInAction } from "../redux/actionCreators/auth";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 const url = process.env.REACT_APP_BASE_URL;
 
 class VehicleDetail extends Component {
@@ -75,9 +76,8 @@ class VehicleDetail extends Component {
                 </p>
                 <p className="vehicle-detail-price">Rp{this.state.price}/day</p>
                 <div className="row add-vehicle-nominal detail-add-nominal">
-                  <button className="btn minus-button">-</button>
+                  <label>Stock:</label>
                   <p className="vehicle-qty">{this.state.stock}</p>
-                  <button className="btn plus-button">+</button>
                 </div>
               </Col>
             </div>
@@ -86,7 +86,7 @@ class VehicleDetail extends Component {
                   {this.props.auth.authInfo.roleLevel === 1 || this.props.auth.authInfo.roleLevel === 2 
                   ? (<div>
                     <Link to="/"><button className="btn add-to-home-detail">Add to Home Page</button></Link>
-                    <Link to="/editvehicle"><button className="btn edit-item-detail">Edit Item</button></Link>
+                    <button className="btn edit-item-detail" onClick={() => this.props.history.push('/editvehicle', {id: this.props.match.params.id})}>Edit Item</button>
                   </div>) : (<div>
                     <Link to="/chat">
                     <button className="btn chat-admin-button">
@@ -129,4 +129,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetail);
+const HOC1 = withRouter(VehicleDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(HOC1);
