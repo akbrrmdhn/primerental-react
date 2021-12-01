@@ -49,7 +49,8 @@ class Search extends Component {
     if (this.state.location_id) {
       query += `location_id=${this.state.location_id}&`;
     }
-    this.props.history.push(`${query.slice(0, -1)}`);
+    this.props.history.push({pathname: '/search', search: `${query.slice(0, -1)}`});
+    this.fetchVehicle(query);
   };
   render() {
     const url = process.env.REACT_APP_BASE_URL;
