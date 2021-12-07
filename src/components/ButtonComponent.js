@@ -14,4 +14,5 @@ function ButtonComponent({ decreaseNum, value, increaseNum }) {
   );
 }
 
+
 export default ButtonComponent;
