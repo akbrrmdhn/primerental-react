@@ -34,7 +34,7 @@ Open the [link](https://primerental-reactjs.vercel.app/) through your internet b
 ![HOME](/src/assets/images/home.PNG 'Home')
 ![PROFILE](/src/assets/images/profile.PNG 'Profile')
 ![HISTORY](/src/assets/images/history.PNG 'History')
-![PAYMENT](/src/assets/images/payment.PNG 'Payment')
+![PAYMENT](/src/assets/images/Payment.PNG 'Payment')
 
   <br>
 
