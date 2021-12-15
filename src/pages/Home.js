@@ -87,20 +87,6 @@ class Home extends React.Component {
                     </select>
                   </div>
                 </div>
-                {/* <div className="row-finder">
-                  <div className="column">
-                    <select className="finder-btn finder-payment" defaultValue="Payment">
-                      <option value="Payment" disabled> Payment</option>
-                      <option value="Succeed">Succeed</option>
-                      <option value="Finished">Finished</option>
-                      <option value="Waiting">Waiting</option>
-                      <option value="Declined">Declined</option>
-                    </select>
-                  </div>
-                  <div className="column">
-                    <input className="finder-btn finder-date" type="date" placeholder="Date" />
-                  </div>
-                </div> */}
                 <div className="row-finder">
                   <div className="submit-finder">
                     <button className="btn btn-submit-finder" onClick={this.searchHandler}>Explore</button>
@@ -112,9 +98,9 @@ class Home extends React.Component {
           <section className="popular">
             <div className="popular-title">
             <p className="popular-heading">Popular in Town</p>
-            <Link to="/viewmore">
-            <p className="view-more-popular">View More {">"}</p>
-            </Link>
+            
+            <button className="btn view-more" onClick={() => this.props.history.push('/viewmore', {type: 'Popular in Town'})}>View More {">"}</button>
+            
             </div>
             <div className="popular-cards">
             {vehicleData.map((data) => {

@@ -158,27 +158,37 @@ section{
 .popular-title{
   display: flex;
   justify-content: space-between;
-  margin: 5em;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .popular-heading{
   font-family: 'Playfair Display', sans-serif;
   font-weight: 700;
   font-size: 36px;
-  margin-left: 3rem;
+}
+
+.view-more{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 28;
   margin-right: 3rem;
-  margin-bottom: 3rem;
+  color: #FFCD61;
 }
 
 .popular-cards{
   display: flex;
   justify-content: space-evenly;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .vehicle-card{
+  flex: 1 0 21%;
+  margin: 3rem;
   border-radius: 5%;
   position: relative;
+  width: 18rem;
 }
 
 .vehicle-card-img{
@@ -1201,11 +1211,18 @@ input[type=password] {
 }
 
 .detail-buttons{
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding-bottom: 2em;
+}
+
+.align-buttons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .chat-admin-button{
@@ -1442,4 +1459,65 @@ input[type=password] {
 .social-links{
   display: flex;
   justify-content: space-around;
+}
+
+@media (max-width: 1800px) {
+  .vehicle-finder{
+    margin-top: 3%;
+  }
+  .hero-section-home{
+    height: 70vh;
+  }
+  .vehicle-card{
+    width: 15rem;
+  }
+  .vehicle-card-img{
+    height: 20em;
+    width: 100%;
+  }
+  .card-body{
+    top: 14.5em;
+    width: 10em;
+    left: -0.5em;
+  }
+  .testimonial-body{
+    top: 23em;
+    left: 8.5em;
+  }
+  .chat-admin-button{
+    width: 10em;
+  }
+  .reserve-now-button{
+    width: 10em;
+  }
+  .give-like-button{
+    width: 10em;
+  }
+  .add-to-home-detail{
+    width: 10em;
+  }
+  .edit-item-detail{
+    width: 10em;
+  }
+  .detail-buttons{
+    margin-top: -5em;
+  }
+}
+
+@media (max-width: 1300px){
+  .vehicle-card{
+    width: 13rem;
+  }
+  .vehicle-card-img{
+    height: 20em;
+    width: 100%;
+  }
+  .card-body{
+    top: 14.5em;
+    width: 10em;
+    left: -0.5em;
+  }
+  .profile-save, .profile-edit-password, .profile-cancel{
+    width: 12em;
+  }
 }

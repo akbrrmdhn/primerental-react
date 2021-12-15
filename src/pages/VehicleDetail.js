@@ -84,10 +84,10 @@ class VehicleDetail extends Component {
           </section>
           <section className="detail-buttons">
                   {this.props.auth.authInfo.roleLevel === 1 || this.props.auth.authInfo.roleLevel === 2 
-                  ? (<div>
+                  ? (<div className="align-buttons">
                     <Link to="/"><button className="btn add-to-home-detail">Add to Home Page</button></Link>
                     <button className="btn edit-item-detail" onClick={() => this.props.history.push('/editvehicle', {id: this.props.match.params.id})}>Edit Item</button>
-                  </div>) : (<div>
+                  </div>) : (<div className="align-buttons">
                     <Link to="/chat">
                     <button className="btn chat-admin-button">
                       Chat Admin

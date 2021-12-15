@@ -3,23 +3,62 @@ import React, { Component } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import CardComponent from "../components/CardComponent";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 const url = process.env.REACT_APP_BASE_URL;
 
-export default class ViewMore extends Component {
+class ViewMore extends Component {
   state = {
     vehicles: [],
   };
   componentDidMount() {
-
-    Axios.get(`${url}/vehicles`, {
-      params: { order_by: "score", sort: "DESC", limit: 12 },
-    })
-      .then(({ data }) => {
-        this.setState({ vehicles: data.result.data });
+    console.log(this.props.location.state.type);
+    const param = this.props.location.state.type;
+    if(param === 'Popular in Town'){
+      Axios.get(`${url}/vehicles`, {
+        params: { order_by: "score", sort: "DESC", limit: 16 },
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then(({ data }) => {
+          this.setState({ vehicles: data.result.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    if(param === 'Cars'){
+      Axios.get(`${url}/vehicles`, {
+        params: { category_id: 1, order_by: "score", sort: "DESC", limit: 16 },
+      })
+        .then(({ data }) => {
+          this.setState({ vehicles: data.result.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    if(param === 'Motorbikes'){
+      Axios.get(`${url}/vehicles`, {
+        params: { category_id: 2, order_by: "score", sort: "DESC", limit: 16 },
+      })
+        .then(({ data }) => {
+          this.setState({ vehicles: data.result.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    if(param === 'Bikes'){
+      Axios.get(`${url}/vehicles`, {
+        params: { category_id: 3, order_by: "score", sort: "DESC", limit: 16 },
+      })
+        .then(({ data }) => {
+          this.setState({ vehicles: data.result.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
   }
   render() {
     const vehicleData = this.state.vehicles;
@@ -27,8 +66,8 @@ export default class ViewMore extends Component {
       <div className="viewmore-page">
         <Header />
         <main>
-          <section className="viewmore-heading">
-            <p>Popular in Town</p>
+          <section className="popular-title">
+              <p className="popular-heading">{this.props.location.state.type}</p>
           </section>
           <section className="viewmore-cards">
             <div className="popular-cards">
@@ -51,3 +90,12 @@ export default class ViewMore extends Component {
     );
   }
 }
+
+const mapStateToProps = ({auth}) => {
+  return{
+    auth,
+  }
+}
+
+const HOC1 = withRouter(ViewMore);
+export default connect(mapStateToProps)(HOC1);

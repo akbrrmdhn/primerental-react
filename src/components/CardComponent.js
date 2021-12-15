@@ -5,7 +5,7 @@ function CardComponent({ link, picture, title, subtitle}) {
     return (
       <Link to={link ? link : "#"}>
       
-      <Card className="vehicle-card" style={{ width: "18rem" }}>
+      <Card className="vehicle-card">
                 <Card.Img
                   className="vehicle-card-img"
                   variant="top"
